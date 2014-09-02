@@ -1,0 +1,27 @@
+CDF_DIR=/home/bcurtis/workspace/cdf34_1-dist
+CDF_LIB_DIR=${CDF_DIR}/src/lib
+KAMELEON_PLUS_DIR=/home/bcurtis/workspace/KameleonPlus
+HDF5_DIR=/home/bcurtis/workspace/hdf5-1.8.10/hdf5
+HDF5_LIB_DIR=${HDF5_DIR}/lib
+all:
+	g++ reader.cpp -o reader -I/home/bcurtis/workspace/boost_1_52_0/ -I${KAMELEON_PLUS_DIR}/src/ \
+		${KAMELEON_PLUS_DIR}/src/ccmc/.libs/libkameleon_plus.a \
+		${CDF_LIB_DIR}/libcdf.a 
+	g++ diff.cpp -o diffplot -I/home/bcurtis/workspace/boost_1_52_0/ -I${KAMELEON_PLUS_DIR}/src/ \
+		${KAMELEON_PLUS_DIR}/src/ccmc/.libs/libkameleon_plus.a \
+		${CDF_LIB_DIR}/libcdf.a 
+	g++ pcdiff.cpp -o pcdiff -I/home/bcurtis/workspace/boost_1_52_0/ -I${KAMELEON_PLUS_DIR}/src/ \
+		${KAMELEON_PLUS_DIR}/src/ccmc/.libs/libkameleon_plus.a \
+		${CDF_LIB_DIR}/libcdf.a 
+base:
+	g++ reader.cpp -o reader -I/home/bcurtis/workspace/boost_1_52_0/ -I${KAMELEON_PLUS_DIR}/src/ \
+		${KAMELEON_PLUS_DIR}/src/ccmc/.libs/libkameleon_plus.a \
+		${CDF_LIB_DIR}/libcdf.a 
+diff:
+	g++ diff.cpp -o diffplot -I/home/bcurtis/workspace/boost_1_52_0/ -I${KAMELEON_PLUS_DIR}/src/ \
+		${KAMELEON_PLUS_DIR}/src/ccmc/.libs/libkameleon_plus.a \
+		${CDF_LIB_DIR}/libcdf.a 
+precondition:
+	g++ pcdiff.cpp -o pcdiff -I/home/bcurtis/workspace/boost_1_52_0/ -I${KAMELEON_PLUS_DIR}/src/ \
+		${KAMELEON_PLUS_DIR}/src/ccmc/.libs/libkameleon_plus.a \
+		${CDF_LIB_DIR}/libcdf.a 

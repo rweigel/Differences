@@ -1,0 +1,12 @@
+The following codes start out by creating a personalized cartesian grid structure, retrieves Bz, Jx, rho, Ux variables from specific data files, performs a kameleon interpolation from each run onto the personalized cartesian grid, calculates the percent difference if required, then outputs a .vtk file for the user to open via Paraview.
+
+Each file differs as follows:
+
+Reader.cpp
+    - gathers variables from /mnt/Disk2 subdirectories and creates .vtk output files in the /mnt/Disk2 subdirectories
+    
+Diff.cpp
+    - gathers variables from /mnt/Disk2 subdirectories and calculates percent differences for all variables, then places the result files in /mnt/Disk2/Results.
+    
+pcdiff.cpp
+    - gathers variables from /mnt/Disk2/Precondition (specific to the preconditioning case used in Brian Curtis' thesis) and calculates percent differences foll variables, then places the result files in /mnt/Disk2/Precondition/Results

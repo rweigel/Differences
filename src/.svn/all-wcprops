@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/bcurtis/!svn/ver/316/Dissertation/Differences/CPP
+END
+reader.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/bcurtis/!svn/ver/316/Dissertation/Differences/CPP/reader.cpp
+END
+diff.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/bcurtis/!svn/ver/314/Dissertation/Differences/CPP/diff.cpp
+END
+pcdiff.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/bcurtis/!svn/ver/314/Dissertation/Differences/CPP/pcdiff.cpp
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/bcurtis/!svn/ver/314/Dissertation/Differences/CPP/Makefile
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/bcurtis/!svn/ver/316/Dissertation/Differences/CPP/README
+END
