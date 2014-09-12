@@ -40,7 +40,7 @@ boost:
 kameleon:
 	make ${KAMELEON}
 
-${KAMELEON}: ${CDF}
+${KAMELEON}: ${CDF} ${BOOST_DIR}
 	cd ../; tar zxvf ${KAMELEON_TGZ}
 	cd ${KAMELEON_DIR}; ./configure --with-cdf=${CDF_LIB} --with-hdf5=${HDF5_LIB} \
 		--with-boost-includes=${BOOST_DIR} --with-boost=${BOOST_DIR}
