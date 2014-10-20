@@ -20,10 +20,10 @@
 
 float FloatSwap( float f )
 {
-   union
+  union
    {
-      float f;
-      unsigned char b[4];
+     float f;
+     unsigned char b[4];
    } dat1, dat2;
 
    dat1.f = f;
@@ -46,7 +46,7 @@ int main (int argc, char * argv[]){
   }
 
   ccmc::Kameleon kameleon1, kameleon2;
-  std::string filename1, filename2;
+  std::string filename1, filename2, filename1o;
   std::string variable;
   std::vector<int> myvars;
   bool firstrun=true, CALCDIFF=false;
@@ -121,6 +121,7 @@ int main (int argc, char * argv[]){
     }
     std::cout << "File " << runi << ": " << chooserun[runi] << std::endl;
     dset1 = runi;
+
     // WOULD NEED TO CREATE A LOOP THROUGH ALL FILES IN BOTH DATA SETS
     // GET USER TO PROVIDE DIRECTORIES OF TWO MODEL OUTPUTS
     std::vector<std::string> run1ls;
@@ -146,8 +147,21 @@ int main (int argc, char * argv[]){
 	filename1 = dirstring;
 	filename1.append("/");
 	filename1.append(run1ls[loopnum]);
-	std::cout << "Reading " << filename1 << std::endl;
+	filename1o = filename1;
 
+	std::string com;
+
+	if (filename1.substr(filename1.find_last_of(".")) == ".gz") {
+	  filename1o = filename1o.erase(filename1.size() - 3); // Remove .gz
+	  com = "gunzip -c " + filename1 + " > " + filename1o;
+	  //const char *c = com.c_str();
+	  std::cout << "Unzipping " << filename1 << std::endl;
+	  system(com.c_str());
+	  filename1 = filename1o;
+	}
+	
+	std::cout << com << std::endl;
+	std::cout << "Reading " << filename1 << std::endl;
 	long status = kameleon1.open(filename1);
 	std::cout << "Opened " << filename1 << " with status: " << status << std::endl;
 	std::cout << "ccmc::FileReader::OK = " << ccmc::FileReader::OK << std::endl;
