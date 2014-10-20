@@ -17,6 +17,12 @@ HDF5=${HDF5_LIB}/lib/libhdf5.a
 
 all: reader diffplot pcdiff
 
+run: all
+	./reader ../data/
+
+gzip:
+	find ../data -name "*.vtk" | xargs -P12 -i gzip --fast {}
+
 # Lots of warnings
 ${HDF5_DIR}:
 	cd ../; tar zxvf ${HDF5_TGZ}
