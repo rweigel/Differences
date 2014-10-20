@@ -148,16 +148,26 @@ int main (int argc, char * argv[]){
 	filename1.append("/");
 	filename1.append(run1ls[loopnum]);
 	filename1o = filename1;
-
 	std::string com;
+	std::string comx;
+
+	int wasgz = 0;
+
 
 	if (filename1.substr(filename1.find_last_of(".")) == ".gz") {
-	  filename1o = filename1o.erase(filename1.size() - 3); // Remove .gz
-	  com = "gunzip -c " + filename1 + " > " + filename1o;
-	  //const char *c = com.c_str();
-	  std::cout << "Unzipping " << filename1 << std::endl;
-	  system(com.c_str());
-	  filename1 = filename1o;
+	  filename1o = filename1o.erase(filename1.size() - 3); // Remove .gz extension
+
+	  bool b = std::ifstream(filename1o.c_str()).good(); // If unzipped file exists
+	  if (b) {
+	    continue;
+	  } else {
+	    wasgz = 1; // If no unzipped file, unzip it and then delete unzipped file when done.
+	    com = "gunzip -c " + filename1 + " > " + filename1o;
+	    comx = "rm -f " + filename1o;
+	    std::cout << "Unzipping " << filename1 << std::endl;
+	    system(com.c_str());
+	    filename1 = filename1o;
+	  }
 	}
 	
 	std::cout << com << std::endl;
@@ -261,6 +271,12 @@ int main (int argc, char * argv[]){
 	std::cout << "Wrote: " << resultfilename << std::endl;
 	kameleon1.close();
 	value.clear();
+
+	if (wasgz == 1) {
+	  std::cout << "Removing " << filename1o << std::endl;
+	  system(comx.c_str());
+	}
+
     }
   }
   //delete interpolator;

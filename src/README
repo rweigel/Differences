@@ -1,10 +1,17 @@
 The following codes create a cartesian grid structure, retrieve Bz, Jx, rho, Ux from specific data files, performs an interpolation onto the grid using Kameleon, calculate the percent difference, and outputs a .vtk file.
 
+Data files are assumed to be in ../disk, but this directory may be set as an argument to executables.
+
+If gzip file is found, it is unzipped, read, and then the uncompressed version is removed.
+
+If FILANEME.cdf.gz and FILENAME.cdf files are both found, FILENAME.cdf.gz is not processed.
+If FILANEME.cdf.gz is found and FILENAME.cdf is not found files are both found, FILENAME.cdf is deleted after processing.
+
 reader.cpp
-    - gathers variables from /mnt/Disk2 subdirectories and creates .vtk output files in the /mnt/Disk2 subdirectories
+    - Reads from ../disk subdirectories and creates .vtk output files in subdirectories of ../disk
     
 diff.cpp
-    - gathers variables from /mnt/Disk2 subdirectories and calculates percent differences for all variables, then places the result files in /mnt/Disk2/Results.
+    - Reads from ../disk subdirectories and calculates percent differences for all variables, then places the result files in ../disk/Results.
     
 pcdiff.cpp
-    - gathers variables from /mnt/Disk2/Precondition (specific to the preconditioning case used in Brian Curtis' thesis) and calculates percent differences for all variables, then places the result files in /mnt/Disk2/Precondition/Results
+    - Reads from ../disk/Precondition (specific to the preconditioning case used in Brian Curtis' thesis) and calculates percent differences for all variables, then places the result files in ../disk/Precondition/Results
