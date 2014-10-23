@@ -17,25 +17,9 @@
 #include <boost/random/variate_generator.hpp>
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/io.hpp>
+#include "misc.h"
 
-float FloatSwap( float f )
-{
-  union
-   {
-     float f;
-     unsigned char b[4];
-   } dat1, dat2;
-
-   dat1.f = f;
-   dat2.b[0] = dat1.b[3];
-   dat2.b[1] = dat1.b[2];
-   dat2.b[2] = dat1.b[1];
-   dat2.b[3] = dat1.b[0];
-   return dat2.f;
-}
-
-
-int main (int argc, char * argv[]){
+int main (int argc, char* argv[]){
 
   const char* dirname;
 
@@ -52,67 +36,20 @@ int main (int argc, char * argv[]){
   bool firstrun=true, CALCDIFF=false;
   int i,j,k,m;
 
-  // CREATING PERSONALIZED MAGNETOSPHERIC GRID
   int npoinx = 345;
   int npoiny = 187;
   int npoinz = 187;
-  int xmin = -222;
-  int ymin = -47;
-  int zmin = ymin;
-  int xmax = 30;
-  int ymax = 47;
-  int zmax = ymax;
 
-  // X COORDINATES
   float *xcord = new float[npoinx];
-  xcord[0] = xmin;
-  i = 0;
-  while (xcord[i] < xmax){
-    i++;
-    if(xcord[i-1] < -30. || xcord[i-1] >= 30.){ xcord[i] = xcord[i-1]+1.; }
-    else if(xcord[i-1] < -8. || xcord[i-1] >= 8.){ xcord[i] = xcord[i-1]+0.5; }
-    else if(xcord[i-1] <= 0. || xcord[i-1] >= 0.){ xcord[i] = xcord[i-1]+0.25; } 
-  }
-
-  // Y COORDINATES
   float *ycord = new float[npoiny];
-  ycord[0] = ymin;
-  i = 0;
-  while (ycord[i] < ymax){
-    i++;
-    if(ycord[i-1] < -30. || ycord[i-1] >= 30.){ ycord[i] = ycord[i-1]+1.; }
-    else if(ycord[i-1] < -8. || ycord[i-1] >= 8.){ ycord[i] = ycord[i-1]+0.5; }
-    else if(ycord[i-1] <= 0. || ycord[i-1] >= 0.){ ycord[i] = ycord[i-1]+0.25; } 
-  }
-
-  // Z COORDINATES
   float *zcord = new float[npoinz];
-  zcord[0] = zmin;
-  i = 0;
-  while (zcord[i] < zmax){
-    i++;
-    if(zcord[i-1] < -30. || zcord[i-1] >= 30.){ zcord[i] = zcord[i-1]+1.; }
-    else if(zcord[i-1] < -8. || zcord[i-1] >= 8.){ zcord[i] = zcord[i-1]+0.5; }
-    else if(zcord[i-1] <= 0. || zcord[i-1] >= 0.){ zcord[i] = zcord[i-1]+0.25; } 
-  }
-	
-  // GET THE DIRECTORY CONTENTS AND SORT INTO AN ARRAY
-  DIR *d;
-  struct dirent *dir;
-  std::vector<std::string> chooserun;
-  d = opendir(dirname);
-  i = 0;
-  std::cout << "Reading " << dirname << std::endl;
-  if (d) {
-    while ((dir = readdir(d)) != NULL) {
-      if (strcmp(dir->d_name,"..") && strcmp(dir->d_name,".") && strcmp(dir->d_name,"lost+found")){
-	i++;
-	chooserun.push_back(dir->d_name);
-      }
-    }
-  }
 
-  std::sort(chooserun.begin(), chooserun.end());
+  grid(xcord,ycord,zcord);
+
+  std::cout << "Reading " << dirname << std::endl;
+  std::vector<std::string> chooserun;
+  rundirs(&chooserun, dirname);
+
   int dset1, runi;
   for (runi = 0; runi < chooserun.size(); runi++){
     if (runi==3 || runi==7 || runi==11 || runi==15){ // SKIP LFM RUNS
@@ -124,6 +61,9 @@ int main (int argc, char * argv[]){
 
     // WOULD NEED TO CREATE A LOOP THROUGH ALL FILES IN BOTH DATA SETS
     // GET USER TO PROVIDE DIRECTORIES OF TWO MODEL OUTPUTS
+    DIR *d;
+    d = opendir(dirname);
+    struct dirent *dir;
     std::vector<std::string> run1ls;
     std::string dirstring;
     dirstring = dirname;
@@ -152,7 +92,6 @@ int main (int argc, char * argv[]){
 	std::string comx;
 
 	int wasgz = 0;
-
 
 	if (filename1.substr(filename1.find_last_of(".")) == ".gz") {
 	  filename1o = filename1o.erase(filename1.size() - 3); // Remove .gz extension

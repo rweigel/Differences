@@ -47,13 +47,13 @@ ${KAMELEON}: ${KAMELEON_DIR} ${CDF} ${HDF5_DIR} ${BOOST_DIR}
 		--with-boost-includes=${BOOST_DIR} --with-boost=${BOOST_DIR}
 	cd ${KAMELEON_DIR}; make all
 
-reader: ${KAMELEON} reader.cpp
+reader: ${KAMELEON} reader.cpp misc.h
 	g++ reader.cpp -o reader -I${BOOST_DIR} -I${KAMELEON_DIR}/src/ ${KAMELEON} ${CDF}
 
-diffplot: ${KAMELEON} diff.cpp
+diffplot: ${KAMELEON} diff.cpp misc.h
 	g++ diff.cpp -o diffplot -I${BOOST_DIR} -I${KAMELEON_DIR}/src/ ${KAMELEON} ${CDF}
 
-pcdiff: ${KAMELEON} pcdiff.cpp
+pcdiff: ${KAMELEON} pcdiff.cpp misc.h
 	g++ pcdiff.cpp -o pcdiff -I${BOOST_DIR} -I${KAMELEON_DIR}/src/ ${KAMELEON} ${CDF}
 
 clean:
