@@ -15,6 +15,9 @@ tgz/ParaView-4.0.1-Linux-64bit.tar.gz:
 ParaView-4.0.1-Linux-64bit: tgz/ParaView-4.0.1-Linux-64bit.tar.gz
 	tar zxvf tgz/ParaView-4.0.1-Linux-64bit.tar.gz
 
+unzip:
+	find ./data -name "*.vtk.gz" | xargs -i -P 12 gunzip {}
+
 images: ParaView-4.0.1-Linux-64bit
 	ParaView-4.0.1-Linux-64bit/bin/pvbatch readerimg.py
 #	diffplotimg.py

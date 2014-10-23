@@ -1,11 +1,8 @@
-The following codes create a cartesian grid structure, retrieve Bz, Jx, rho, Ux from specific data files, performs an interpolation onto the grid using Kameleon, calculate the percent difference, and outputs a .vtk file.
+The following codes create a cartesian grid structure, extracts Bz, Jx, rho, Ux from run data files, performs an interpolation onto the grid using Kameleon, calculate the percent difference, and output a .vtk file for each time step.
 
 Data files are assumed to be in ../disk, but this directory may be set as an argument to executables.
 
-If gzip file is found, it is unzipped, read, and then the uncompressed version is removed.
-
-If FILANEME.cdf.gz and FILENAME.cdf files are both found, FILENAME.cdf.gz is not processed.
-If FILANEME.cdf.gz is found and FILENAME.cdf is not found files are both found, FILENAME.cdf is deleted after processing.
+All files are assumed to have extension .cdf (not .cdf.gz).
 
 reader.cpp
     - Reads from ../disk subdirectories and creates .vtk output files in subdirectories of ../disk

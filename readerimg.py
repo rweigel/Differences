@@ -4,38 +4,43 @@ import math
 import time
 import os
 
-def mySlice(do_var, file_in):
-  aa = []
-  for i in range (0,73):
-  #for i in range (0,5):
-    aa.append(file_in + "Result%d.vtk" % (i))
-  #aa = file_in + "Result%d.vtk" % (i)
-  reader = servermanager.sources.LegacyVTKReader( FileNames=aa )
-  view = servermanager.CreateRenderView()
-  #CREATE THE SLICE FOR DISPLAY
-  sliceFilter = servermanager.filters.Slice(Input=reader)
-  sliceFilter.SliceType = "Plane"
+Nt     = 3
+base   = "data/Brian_Curtis_04"
+var_in = ["Bz","Jx","rho","Ux"]
+
+#folders = ["2213_1","2213_2","2213_3","2213_5","2213_6","2213_7","2413_1","2413_2","2413_3","2413_5","2413_6","2413_7","102114_1","102114_2","102114_3"]
+folders = ["102114_2","102114_3"]
+
+def mySlice(do_var, files, dir_png):
+
+  reader = servermanager.sources.LegacyVTKReader(FileNames=files)
+  view   = servermanager.CreateRenderView()
+
+  # CREATE THE SLICE FOR DISPLAY
+  sliceFilter                  = servermanager.filters.Slice(Input=reader)
+  sliceFilter.SliceType        = "Plane"
   sliceFilter.SliceType.Origin = [0,0,0]
-  sliceFilter.SliceType.Normal= [0,1,0]
+  sliceFilter.SliceType.Normal = [0,1,0]
+
   if do_var == "Jx" or do_var == "Jx_Diff":
     sliceFilter.SliceType.Normal= [0,0,1]
+
   repre = servermanager.CreateRepresentation(sliceFilter,view)
-  for i in range(0,73):
-  #for i in range (0,5):
-    #view.ViewTime = i
+
+  for i in range(0,Nt):
     reader.UpdatePipeline(i)
-    datainfo = reader.GetDataInformation()
+    datainfo      = reader.GetDataInformation()
     pointDataInfo = datainfo.GetPointDataInformation()
-    arrayInfo = pointDataInfo.GetArrayInformation(do_var)
+    arrayInfo     = pointDataInfo.GetArrayInformation(do_var)
     if arrayInfo:
       datarange = arrayInfo.GetComponentRange(-1)
       print "Iteration ",i,": ",datarange
-  repre.ColorArrayName = do_var
-  repre.ColorAttributeType='POINT_DATA'
-  repre.CubeAxesVisibility = 1
-  repre.CubeAxesColor = [0,0,0]
 
-  #cc = bb.append('\n    
+  repre.ColorArrayName     = do_var
+  repre.ColorAttributeType = 'POINT_DATA'
+  repre.CubeAxesVisibility = 1
+  repre.CubeAxesColor      = [0,0,0]
+
   #repre.CubeAxesXTitle = "X (Re) \n %d minutes" % (i*5)
   repre.CubeAxesXAxisVisibility = 1
   repre.CubeAxesXAxisTickVisibility = 1
@@ -48,8 +53,8 @@ def mySlice(do_var, file_in):
   repre.CubeAxesZAxisVisibility = 1
   repre.CubeAxesZAxisTickVisibility = 1
   repre.CubeAxesZAxisMinorTickVisibility = 0
+
   repre.LookupTable = GetLookupTableForArray( do_var, 1)
-  
   #repre.LookupTable.ColorSpace = 'Diverging'
   repre.LookupTable.VectorMode = 'Magnitude'
   #repre.LookupTable.ScalarRangeInitialized = 1.0
@@ -57,7 +62,8 @@ def mySlice(do_var, file_in):
   #repre.LookupTable.AllowDuplicateScalars = 1
     
   bar = servermanager.rendering.ScalarBarWidgetRepresentation()
-  #LETS SET THE COLORBARS SPECIFICALLY FOR CERTAIN VARIABLES
+
+  # SET THE COLORBARS SPECIFICALLY FOR CERTAIN VARIABLES
   repre.LookupTable.ColorSpace = 'Diverging'
   repre.LookupTable.RGBPoints[0] = -100
   repre.LookupTable.RGBPoints[4] = 100
@@ -92,13 +98,12 @@ def mySlice(do_var, file_in):
   elif do_var == "Ux_Diff":
     bar.Title = "$\frac{\Delta U_x}{\bar{U_x}}$"
   
-
-  bar.TitleFontSize=7
-  bar.LabelFontSize=7
-  bar.TitleColor = [0.0, 0.0, 0.0]
-  bar.LabelColor = [0.0, 0.0, 0.0]
-  bar.LookupTable=repre.LookupTable
-  bar.Position=[0.88, 0.275]
+  bar.TitleFontSize = 7
+  bar.LabelFontSize = 7
+  bar.TitleColor  = [0.0, 0.0, 0.0]
+  bar.LabelColor  = [0.0, 0.0, 0.0]
+  bar.LookupTable = repre.LookupTable
+  bar.Position    = [0.88, 0.275]
 
   view.Representations.append(bar)
   view.Background = [1.0, 1.0, 1.0]
@@ -110,6 +115,7 @@ def mySlice(do_var, file_in):
   #view.CameraPosition = [-82.51589842138664, -468.91120534394526, 0]
   view.CameraFocalPoint = [-82,0,0]
   view.CameraPosition = [-82, -468, 0]
+
   if do_var == "Jx" or do_var == "Jx_Diff":
     view.CameraViewUp = [0.0,1.0,0.0]
     #view.CameraFocalPoint = [-82.51589842138664,0,0]
@@ -118,25 +124,22 @@ def mySlice(do_var, file_in):
     view.CameraPosition = [-82,  0, 468]
     view.UseOffscreenRendering
 
-  for i in range(0,73):
-  #for i in range (0,5):
+  for i in range(0,Nt):
     view.ViewTime = i
     repre.CubeAxesXTitle = "Time %dmin \n\n    X (Re)" % (i*5)
-    aa = file_in + "/images/"+do_var+"_File%d.png" % (i)
-    #aa = "/home/bcurtis/Desktop/Test/"+do_var+"_File%d.png" % (i)
-    view.WriteImage(aa,'vtkPNGWriter')
-    print "Wrote Image "+do_var+"_File%d.png" % (i)
-    
+    file_png = dir_png+do_var+"_File%d.png" % (i)
+    file_pdf = dir_png+do_var+"_File%d.pdf" % (i)
+    view.WriteImage(file_png,'vtkPNGWriter')
+    print "Wrote "+file_png
 
-#var_in = ["rho_Diff", "B_Diff", "Jx_Diff"]
-#folders = ["0_1","0_2","1_2","4_5","4_6","5_6","8_9","8_10","9_10","12_13","12_14","13_14"]
-var_in = ["Bz","Jx","rho","Ux"]
-#var_in = ["Bz","Jx"]
-folders = ["2213_1","2213_2","2213_3","2213_5","2213_6","2213_7","2413_1","2413_2","2413_3","2413_5","2413_6","2413_7"]
-#folders = ["2213_1"]
 for folder in folders:
-  #file_in = "/mnt/Disk2/Results/"+folder+"/"
-  file_in = "/mnt/Disk2/Brian_Curtis_04"+folder+"/Results/"
-  print "File-In: ",file_in
+
+  dir_vtk = base+folder+"/Results/"
+  dir_png = dir_vtk + "/images/"
+  print "Processing directory: ",dir_vtk
+  files_vtk = []
+  for i in range (0,Nt):
+    files_vtk.append(dir_vtk + "Result%d.vtk" % (i))
+
   for do_var in var_in:
-    mySlice(do_var,file_in)
+    mySlice(do_var,files_vtk,dir_png)

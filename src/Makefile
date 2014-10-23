@@ -15,13 +15,15 @@ HDF5_DIR=$(CURDIR)/../hdf5-1.8.10-patch1
 HDF5_LIB=${HDF5_DIR}/lib
 HDF5=${HDF5_LIB}/lib/libhdf5.a
 
-all: reader diffplot pcdiff
+all: reader diff pcdiff
+
+unzip:
+	find ../data -name "*.cdf.gz" | xargs -i -P 12 gunzip {}
 
 run: all
 	./reader ../data/
-
-gzip:
-	find ../data -name "*.vtk" | xargs -P12 -i gzip --fast {}
+	./pcdiff ../data/
+	./diff ../data/
 
 # Lots of warnings
 ${HDF5_DIR}:
@@ -50,14 +52,14 @@ ${KAMELEON}: ${KAMELEON_DIR} ${CDF} ${HDF5_DIR} ${BOOST_DIR}
 reader: ${KAMELEON} reader.cpp misc.h
 	g++ reader.cpp -o reader -I${BOOST_DIR} -I${KAMELEON_DIR}/src/ ${KAMELEON} ${CDF}
 
-diffplot: ${KAMELEON} diff.cpp misc.h
-	g++ diff.cpp -o diffplot -I${BOOST_DIR} -I${KAMELEON_DIR}/src/ ${KAMELEON} ${CDF}
+diff: ${KAMELEON} diff.cpp misc.h
+	g++ diff.cpp -o diff -I${BOOST_DIR} -I${KAMELEON_DIR}/src/ ${KAMELEON} ${CDF}
 
 pcdiff: ${KAMELEON} pcdiff.cpp misc.h
 	g++ pcdiff.cpp -o pcdiff -I${BOOST_DIR} -I${KAMELEON_DIR}/src/ ${KAMELEON} ${CDF}
 
 clean:
-	- rm reader diffplot pcdiff
+	- rm reader diff pcdiff
 
 distclean:
 	make clean
