@@ -55,7 +55,7 @@ int main (int argc, char* argv[]){
       std::cout << "Skipping Run " << runi << std::endl;
       continue;
     }
-    std::cout << "File " << runi << ": " << chooserun[runi] << std::endl;
+    std::cout << "Directory " << runi << ": " << chooserun[runi] << std::endl;
     dset1 = runi;
 
     // Get list of timesteps for a given run

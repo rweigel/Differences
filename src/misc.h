@@ -73,6 +73,7 @@ void vtk(std::string resultfilename, float *xcord, float *ycord, float *zcord, b
     val = FloatSwap(value(3,i));
     fwrite((void *)&val, sizeof(float), 1, myfile);
   }
+
   fclose(myfile);
   
 }

@@ -22,18 +22,12 @@
 int main (int argc, char * argv[]){
 
   const char* dirname;
-
-  if (argc > 1) {
-    dirname = argv[1];
-  } else {
-    dirname = "../data/";
-  }
-
   const char* dir1s;
   const char* dir2s;
 
-  dir1s = "Brian_Curtis_042213_1";
-  dir2s = "Brian_Curtis_042213_5";
+  dirname = argv[1];
+  dir1s = argv[2];
+  dir2s = argv[3];
 
   DIR *d1;
   DIR *d2;
@@ -56,9 +50,6 @@ int main (int argc, char * argv[]){
   float *zcord = new float[npoinz];
 
   grid(xcord,ycord,zcord);
-
-  std::vector<std::string> chooserun;
-  rundirs(&chooserun, dirname);
   
   ///////////////////////////////////////////////////////////////    
   std::cout << "Dataset 1" << ": " << dir1s << std::endl;
@@ -66,8 +57,7 @@ int main (int argc, char * argv[]){
   
   std::vector<std::string> run1ls;
   std::string dirstring1;
-  dirstring1 = dirname; 
-  dirstring1.append(dir1s);
+  dirstring1 = dir1s; 
   dirstring1.append("/GM_CDF");
   std::cout << "Reading " << dirstring1 << std::endl;
   d1 = opendir(dirstring1.c_str());
@@ -92,8 +82,7 @@ int main (int argc, char * argv[]){
   
   std::vector<std::string> run2ls;
   std::string dirstring2;
-  dirstring2 = dirname;
-  dirstring2.append(dir2s);
+  dirstring2 = dir2s;
   dirstring2.append("/GM_CDF");
   d2 = opendir(dirstring2.c_str());
 
@@ -132,7 +121,7 @@ int main (int argc, char * argv[]){
     
     long status1 = kameleon1.open(filename1);
     std::cout << "Opened: " << filename1 << " with status: " << status1 << std::endl;
-    std::cout << "ccmc::FileReader::OK = " << ccmc::FileReader::OK << std::endl;
+    //std::cout << "ccmc::FileReader::OK = " << ccmc::FileReader::OK << std::endl;
     
     if(kameleon1.doesVariableExist("bz")){kameleon1.loadVariable("bz");}else{return 1;}
     if(kameleon1.doesVariableExist("jx")){kameleon1.loadVariable("jx");}else{return 1;}
@@ -141,7 +130,7 @@ int main (int argc, char * argv[]){
     
     long status2 = kameleon2.open(filename2);
     std::cout << "Opened file: " << filename2 << " with status: " << status2 << std::endl;
-    std::cout << "FileReader::OK = " << ccmc::FileReader::OK << std::endl;
+    //std::cout << "ccmc:FileReader::OK = " << ccmc::FileReader::OK << std::endl;
     
     if(kameleon2.doesVariableExist("bz")){kameleon2.loadVariable("bz");}else{return 1;}
     if(kameleon2.doesVariableExist("jx")){kameleon2.loadVariable("jx");}else{return 1;}
@@ -178,32 +167,46 @@ int main (int argc, char * argv[]){
     }
     std::cout << "Interpolations and Differencing Complete" << std::endl;
     ///////////////////////////////////////////////////////////////    
+
+    kameleon1.close();
+    kameleon2.close();
+
+    ///////////////////////////////////////////////////////////////
+    std::string resultfilename1;
+    resultfilename1 = dir1s;
+    resultfilename1.append("/Results");
+    resultfilename1.append("/Result");
+    resultfilename1.append(boost::lexical_cast<std::string>(loopnum));
+    resultfilename1.append(".vtk");
+    std::cout << "Starting VTK Write of " << resultfilename1 << std::endl;
+    vtk(resultfilename1,xcord,ycord,zcord,value1);
+    std::cout << "Wrote: " << resultfilename1 << std::endl;
+    ///////////////////////////////////////////////////////////////
+    value1.clear();
+
+    ///////////////////////////////////////////////////////////////
+    std::string resultfilename2;
+    resultfilename2 = dir2s;
+    resultfilename2.append("/Results");
+    resultfilename2.append("/Result");
+    resultfilename2.append(boost::lexical_cast<std::string>(loopnum));
+    resultfilename2.append(".vtk");
+    std::cout << "Starting VTK Write of " << resultfilename2 << std::endl;
+    vtk(resultfilename2,xcord,ycord,zcord,value2);
+    std::cout << "Wrote: " << resultfilename2 << std::endl;
+    ///////////////////////////////////////////////////////////////
+    value2.clear();
     
     ///////////////////////////////////////////////////////////////
-    std::cout << "Starting VTK Write" << std::endl;
     std::string resultfilename;
     resultfilename = dirname;
-    resultfilename.append("Precondition/");
-    resultfilename.append(dir1s);
-    resultfilename.append("_vs_");
-    resultfilename.append(dir2s);
-    std::string com;
-    com = "mkdir -p ";
-    com.append(resultfilename); 
-    system(com.c_str());
-    
     resultfilename.append("/pcdiff");
     resultfilename.append(boost::lexical_cast<std::string>(loopnum));
     resultfilename.append(".vtk");
-    
+    std::cout << "Starting VTK Write of " << resultfilename << std::endl;
     vtk(resultfilename,xcord,ycord,zcord,diff);
     std::cout << "Wrote: " << resultfilename << std::endl;
     ///////////////////////////////////////////////////////////////
-    
-    kameleon1.close();
-    kameleon2.close();
-    value1.clear();
-    value2.clear();
     diff.clear();
     
   }

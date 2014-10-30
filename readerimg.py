@@ -9,7 +9,7 @@ base   = "data/Brian_Curtis_04"
 var_in = ["Bz","Jx","rho","Ux"]
 
 #folders = ["2213_1","2213_2","2213_3","2213_5","2213_6","2213_7","2413_1","2413_2","2413_3","2413_5","2413_6","2413_7","102114_1","102114_2","102114_3"]
-folders = ["102114_2","102114_3"]
+folders = ["2213_1"]
 
 def mySlice(do_var, files, dir_png):
 
@@ -41,15 +41,14 @@ def mySlice(do_var, files, dir_png):
   repre.CubeAxesVisibility = 1
   repre.CubeAxesColor      = [0,0,0]
 
-  #repre.CubeAxesXTitle = "X (Re) \n %d minutes" % (i*5)
   repre.CubeAxesXAxisVisibility = 1
   repre.CubeAxesXAxisTickVisibility = 1
   repre.CubeAxesXAxisMinorTickVisibility = 1
-  repre.CubeAxesYTitle = "Y (Re)"
+  repre.CubeAxesYTitle = "$Y (R_E)$"
   repre.CubeAxesYAxisVisibility = 1
   repre.CubeAxesYAxisTickVisibility = 1
   repre.CubeAxesYAxisMinorTickVisibility = 0
-  repre.CubeAxesZTitle = "Z (Re)"
+  repre.CubeAxesZTitle = "$Z (R_E)$"
   repre.CubeAxesZAxisVisibility = 1
   repre.CubeAxesZAxisTickVisibility = 1
   repre.CubeAxesZAxisMinorTickVisibility = 0
@@ -89,14 +88,6 @@ def mySlice(do_var, files, dir_png):
     repre.LookupTable.RGBPoints[4] = 400
     repre.LookupTable.NumberOfTableValues = 20
     bar.Title = "$U_x km/s$"
-  elif do_var == "B_Diff":
-    bar.Title = "$\frac{\Delta B_z}{\bar{B_z}}$"
-  elif do_var == "Jx_Diff":
-    bar.Title = "$\frac{\Delta J_x}{\bar{J_x}}$"
-  elif do_var == "rho_Diff":
-    bar.Title = "$\frac{\Delta \rho}{\bar{\rho}}$"
-  elif do_var == "Ux_Diff":
-    bar.Title = "$\frac{\Delta U_x}{\bar{U_x}}$"
   
   bar.TitleFontSize = 7
   bar.LabelFontSize = 7
@@ -124,11 +115,10 @@ def mySlice(do_var, files, dir_png):
     view.CameraPosition = [-82,  0, 468]
     view.UseOffscreenRendering
 
-  for i in range(0,Nt):
+  for i in range(0,Nt):# get active view
     view.ViewTime = i
-    repre.CubeAxesXTitle = "Time %dmin \n\n    X (Re)" % (i*5)
+    repre.CubeAxesXTitle = "Time %dmin \n\n    $X (R_E)$" % (i*5)
     file_png = dir_png+do_var+"_File%d.png" % (i)
-    file_pdf = dir_png+do_var+"_File%d.pdf" % (i)
     view.WriteImage(file_png,'vtkPNGWriter')
     print "Wrote "+file_png
 
