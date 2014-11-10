@@ -1,4 +1,5 @@
 deps/
 bin/
 data/
+data
 tgz/ParaView-4.0.1-Linux-64bit.tar.gz
