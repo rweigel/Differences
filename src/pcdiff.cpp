@@ -24,10 +24,12 @@ int main (int argc, char * argv[]){
   const char* dirname;
   const char* dir1s;
   const char* dir2s;
+  int off;
 
   dirname = argv[1];
   dir1s = argv[2];
   dir2s = argv[3];
+  off = atoi(argv[4]);
 
   DIR *d1;
   DIR *d2;
@@ -74,7 +76,6 @@ int main (int argc, char * argv[]){
   
   // SORT THE STRING SO FILENAMES ARE IN ORDER
   std::sort(run1ls.begin(), run1ls.end());
-  run1ls.erase(run1ls.begin()+32,run1ls.end());
   
   std::cout << "run1ls size: " << run1ls.size() << std::endl;
   std::cout << "First file: " << run1ls[0] << std::endl;
@@ -97,9 +98,7 @@ int main (int argc, char * argv[]){
   }
   
   std::sort(run2ls.begin(), run2ls.end());
-  run2ls.erase(run2ls.begin(),run2ls.begin()+18);
-  run2ls.erase(run2ls.begin()+35,run2ls.begin()+58);
-  
+
   std::cout << "run2ls size: " << run2ls.size() << std::endl;
   std::cout << "First file: " << run2ls[0] << std::endl;
   std::cout << "Last file: " << run2ls[run2ls.size()-1] << std::endl;
@@ -107,7 +106,7 @@ int main (int argc, char * argv[]){
   
   ///////////////////////////////////////////////////////////////    
   // loop over timesteps
-  for(int loopnum = 0; loopnum<run1ls.size(); loopnum++ ){
+  for(int loopnum = 0; loopnum<run1ls.size()-off; loopnum++ ){
 
     filename1 = dirstring1;
     filename1.append("/");
@@ -116,7 +115,7 @@ int main (int argc, char * argv[]){
 
     filename2 = dirstring2;
     filename2.append("/");
-    filename2.append(run2ls[loopnum]);
+    filename2.append(run2ls[loopnum+off]);
     std::cout << filename2 << std::endl;
     
     long status1 = kameleon1.open(filename1);
@@ -143,12 +142,16 @@ int main (int argc, char * argv[]){
     boost::numeric::ublas::matrix<float> value1(4,npoinx*npoiny*npoinz);
     boost::numeric::ublas::matrix<float> value2(4,npoinx*npoiny*npoinz);
     boost::numeric::ublas::matrix<float> diff(4,npoinx*npoiny*npoinz);
+    boost::numeric::ublas::matrix<float> xyz(3,npoinx*npoiny*npoinz);
     
     std::cout << "Starting Interpolations and Differencing" << std::endl;
     int l = 0;
     for (int k = 0; k < npoinz; k++){
       for (int j = 0; j < npoiny; j++){
 	for (int i = 0; i < npoinx; i++){
+	  xyz(0,l) = xcord[i];
+	  xyz(1,l) = ycord[j];
+	  xyz(2,l) = zcord[k];
 	  value1(0,l) = interpolator1->interpolate("bz", xcord[i], ycord[j], zcord[k]);
 	  value1(1,l) = interpolator1->interpolate("jx", xcord[i], ycord[j], zcord[k]);
 	  value1(2,l) = interpolator1->interpolate("rho", xcord[i], ycord[j], zcord[k]);
@@ -175,11 +178,14 @@ int main (int argc, char * argv[]){
     std::string resultfilename1;
     resultfilename1 = dir1s;
     resultfilename1.append("/Results");
-    resultfilename1.append("/Result");
+    resultfilename1.append("/Result_");
+    if (loopnum < 10) {
+      resultfilename1.append("0");
+    }
     resultfilename1.append(boost::lexical_cast<std::string>(loopnum));
-    resultfilename1.append(".vtk");
+
     std::cout << "Starting VTK Write of " << resultfilename1 << std::endl;
-    vtk(resultfilename1,xcord,ycord,zcord,value1);
+    vtk(resultfilename1,xcord,ycord,zcord,value1,xyz);
     std::cout << "Wrote: " << resultfilename1 << std::endl;
     ///////////////////////////////////////////////////////////////
     value1.clear();
@@ -188,11 +194,13 @@ int main (int argc, char * argv[]){
     std::string resultfilename2;
     resultfilename2 = dir2s;
     resultfilename2.append("/Results");
-    resultfilename2.append("/Result");
+    resultfilename2.append("/Result_");
+    if (loopnum < 10) {
+      resultfilename2.append("0");
+    }
     resultfilename2.append(boost::lexical_cast<std::string>(loopnum));
-    resultfilename2.append(".vtk");
     std::cout << "Starting VTK Write of " << resultfilename2 << std::endl;
-    vtk(resultfilename2,xcord,ycord,zcord,value2);
+    vtk(resultfilename2,xcord,ycord,zcord,value2,xyz);
     std::cout << "Wrote: " << resultfilename2 << std::endl;
     ///////////////////////////////////////////////////////////////
     value2.clear();
@@ -200,11 +208,13 @@ int main (int argc, char * argv[]){
     ///////////////////////////////////////////////////////////////
     std::string resultfilename;
     resultfilename = dirname;
-    resultfilename.append("/pcdiff");
+    resultfilename.append("/pcdiff_");
+    if (loopnum < 10) {
+      resultfilename.append("0");
+    }
     resultfilename.append(boost::lexical_cast<std::string>(loopnum));
-    resultfilename.append(".vtk");
     std::cout << "Starting VTK Write of " << resultfilename << std::endl;
-    vtk(resultfilename,xcord,ycord,zcord,diff);
+    vtk(resultfilename,xcord,ycord,zcord,diff,xyz);
     std::cout << "Wrote: " << resultfilename << std::endl;
     ///////////////////////////////////////////////////////////////
     diff.clear();

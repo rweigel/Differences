@@ -1,16 +1,16 @@
-CDF_TGZ=tgz/cdf34_1-dist-all.tar.gz
+CDF_TGZ=$(CURDIR)/../tgz/cdf34_1-dist-all.tar.gz
 CDF_DIR=$(CURDIR)/../deps/cdf34_1-dist
 CDF_LIB=${CDF_DIR}/src/lib
 CDF=${CDF_LIB}/libcdf.a
 
-KAMELEON_TGZ=tgz/KameleonPlus.tgz
+KAMELEON_TGZ=$(CURDIR)/../tgz/KameleonPlus.tgz
 KAMELEON_DIR=$(CURDIR)/../deps/KameleonPlus
 KAMELEON=${KAMELEON_DIR}/src/ccmc/.libs/libkameleon_plus.a
 
-BOOST_TGZ=tgz/boost_1_52_0.tar.gz
+BOOST_TGZ=$(CURDIR)/../tgz/boost_1_52_0.tar.gz
 BOOST_DIR=$(CURDIR)/../deps/boost_1_52_0
 
-HDF5_TGZ=tgz/hdf5-1.8.10-patch1.tar.gz
+HDF5_TGZ=$(CURDIR)/../tgz/hdf5-1.8.10-patch1.tar.gz
 HDF5_DIR=$(CURDIR)/../deps/hdf5-1.8.10-patch1
 HDF5_LIB=${HDF5_DIR}/lib
 HDF5=${HDF5_LIB}/lib/libhdf5.a

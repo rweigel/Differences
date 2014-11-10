@@ -17,7 +17,7 @@ float FloatSwap( float f )
    return dat2.f;
 }
 
-void vtk(std::string resultfilename, float *xcord, float *ycord, float *zcord, boost::numeric::ublas::matrix<float> value) {
+void vtk(std::string resultfilename, float *xcord, float *ycord, float *zcord, boost::numeric::ublas::matrix<float> value, boost::numeric::ublas::matrix<float> xyz) {
 
   int npoinx = 345;
   int npoiny = 187;
@@ -26,6 +26,27 @@ void vtk(std::string resultfilename, float *xcord, float *ycord, float *zcord, b
   int i;
   float val, val1, val2;
   FILE *myfile;
+
+  FILE *myfile_cut;
+
+  
+  std::string cutfile;
+  cutfile = resultfilename;
+  cutfile.append("_Y_eq_0.txt");
+
+  myfile_cut = fopen(cutfile.c_str(),"w");
+  std::cout << "Writing: " << cutfile << std::endl;  
+  for (i=0; i<npoinx*npoiny*npoinz; i++){
+    if (xyz(1,i) == 0.0) {
+      fprintf(myfile_cut,"%f %f %f %f %f %f\n",xyz(0,i),xyz(2,i),value(0,i),value(1,i),value(2,i),value(3,i));
+    }
+  }
+  fclose(myfile_cut);
+  std::cout << "Wrote: " << cutfile << std::endl;  
+
+
+  resultfilename.append(".vtk");
+
   myfile = fopen(resultfilename.c_str(),"w");
   fprintf(myfile, "# vtk DataFile Version 3.0\n");
   fprintf(myfile, "Brian's Data\nBINARY\n");

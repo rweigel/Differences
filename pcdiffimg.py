@@ -5,8 +5,8 @@ import time
 import os
 import sys
 
-#Nt     = 32
-Nt     = 1
+Nt     = 72-int(sys.argv[2])
+#Nt     = 1
 var_in = ["Bz","Jx","rho","Ux"]
 pcdir  = sys.argv[1]
 
@@ -120,8 +120,8 @@ def mySlice(do_var, file_in):
     view.CameraPosition = [-82,  0, 468]
 #   view.UseOffscreenRendering
 
+  text3 = Text()
   for i in range(0,Nt):
-    text3 = Text()
     text3.Text = "Time: %d min" % (i*5)
     text3Display = Show(text3,view)
     text3Display.Position = [0.45,0.70]
