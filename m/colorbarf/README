@@ -1,0 +1,5 @@
+These python files create slices from the 3-dimensional vtk data files produced by the .cpp files provided in the CPP folder.
+
+Each file readerimg, diffimg, pcdiffimg relate to the .cpp files with similar naming in the CPP folder. Each file is different only in the number of files it creates images for or the directory structure in which it needs to take .vtk files from.
+
+These files can (and most likely will) be combined into one single file as the system of files transitions to a one-click style.
