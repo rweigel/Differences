@@ -121,54 +121,107 @@ int main (int argc, char * argv[]){
     long status1 = kameleon1.open(filename1);
     std::cout << "Opened: " << filename1 << " with status: " << status1 << std::endl;
     //std::cout << "ccmc::FileReader::OK = " << ccmc::FileReader::OK << std::endl;
-    
+
+    if(kameleon1.doesVariableExist("x")){kameleon1.loadVariable("x");}else{return 1;}
+    if(kameleon1.doesVariableExist("y")){kameleon1.loadVariable("y");}else{return 1;}
+    if(kameleon1.doesVariableExist("z")){kameleon1.loadVariable("z");}else{return 1;}
+    if(kameleon1.doesVariableExist("bx")){kameleon1.loadVariable("bx");}else{return 1;}
+    if(kameleon1.doesVariableExist("by")){kameleon1.loadVariable("by");}else{return 1;}
     if(kameleon1.doesVariableExist("bz")){kameleon1.loadVariable("bz");}else{return 1;}
     if(kameleon1.doesVariableExist("jx")){kameleon1.loadVariable("jx");}else{return 1;}
+    if(kameleon1.doesVariableExist("jy")){kameleon1.loadVariable("jy");}else{return 1;}
+    if(kameleon1.doesVariableExist("jz")){kameleon1.loadVariable("jz");}else{return 1;}
     if(kameleon1.doesVariableExist("rho")){kameleon1.loadVariable("rho");}else{return 1;}
+    if(kameleon1.doesVariableExist("p")){kameleon1.loadVariable("p");}else{return 1;}
     if(kameleon1.doesVariableExist("ux")){kameleon1.loadVariable("ux");}else{return 1;}
+    if(kameleon1.doesVariableExist("uy")){kameleon1.loadVariable("uy");}else{return 1;}
+    if(kameleon1.doesVariableExist("uz")){kameleon1.loadVariable("uz");}else{return 1;}
     
     long status2 = kameleon2.open(filename2);
     std::cout << "Opened file: " << filename2 << " with status: " << status2 << std::endl;
     //std::cout << "ccmc:FileReader::OK = " << ccmc::FileReader::OK << std::endl;
-    
+
+    if(kameleon2.doesVariableExist("x")){kameleon2.loadVariable("x");}else{return 1;}
+    if(kameleon2.doesVariableExist("y")){kameleon2.loadVariable("y");}else{return 1;}
+    if(kameleon2.doesVariableExist("z")){kameleon2.loadVariable("z");}else{return 1;}
+    if(kameleon2.doesVariableExist("bx")){kameleon2.loadVariable("bx");}else{return 1;}
+    if(kameleon2.doesVariableExist("by")){kameleon2.loadVariable("by");}else{return 1;}
     if(kameleon2.doesVariableExist("bz")){kameleon2.loadVariable("bz");}else{return 1;}
     if(kameleon2.doesVariableExist("jx")){kameleon2.loadVariable("jx");}else{return 1;}
+    if(kameleon2.doesVariableExist("jy")){kameleon2.loadVariable("jy");}else{return 1;}
+    if(kameleon2.doesVariableExist("jz")){kameleon2.loadVariable("jz");}else{return 1;}
     if(kameleon2.doesVariableExist("rho")){kameleon2.loadVariable("rho");}else{return 1;}
+    if(kameleon2.doesVariableExist("p")){kameleon2.loadVariable("p");}else{return 1;}
     if(kameleon2.doesVariableExist("ux")){kameleon2.loadVariable("ux");}else{return 1;}
+    if(kameleon2.doesVariableExist("uy")){kameleon2.loadVariable("uy");}else{return 1;}
+    if(kameleon2.doesVariableExist("uz")){kameleon2.loadVariable("uz");}else{return 1;}
+
+    //std::vector<float>* x = kameleon2.getVariable("x");
+    //std::cout << x[0].size() << std::endl;
+    //printf("%f\n",x[0][0]);
     
     // INTERPOLATION
     ccmc::Interpolator * interpolator1 = kameleon1.createNewInterpolator();
     ccmc::Interpolator * interpolator2 = kameleon2.createNewInterpolator();
-    boost::numeric::ublas::matrix<float> value1(4,npoinx*npoiny*npoinz);
-    boost::numeric::ublas::matrix<float> value2(4,npoinx*npoiny*npoinz);
-    boost::numeric::ublas::matrix<float> diff(4,npoinx*npoiny*npoinz);
-    boost::numeric::ublas::matrix<float> xyz(3,npoinx*npoiny*npoinz);
+    boost::numeric::ublas::matrix<float> value1(14,npoinx*npoinz);
+    boost::numeric::ublas::matrix<float> value2(14,npoinx*npoinz);
+    boost::numeric::ublas::matrix<float> diff(14,npoinx*npoinz);
+    boost::numeric::ublas::matrix<float> xyz(3,npoinx*npoinz);
     
     std::cout << "Starting Interpolations and Differencing" << std::endl;
     int l = 0;
-    for (int k = 0; k < npoinz; k++){
-      for (int j = 0; j < npoiny; j++){
+    for (int j = 0; j < npoiny; j++){
+
+      if (ycord[j] != 0.0) {
+	  continue;
+      }
+
+      for (int k = 0; k < npoinz; k++){
 	for (int i = 0; i < npoinx; i++){
 	  xyz(0,l) = xcord[i];
 	  xyz(1,l) = ycord[j];
 	  xyz(2,l) = zcord[k];
-	  value1(0,l) = interpolator1->interpolate("bz", xcord[i], ycord[j], zcord[k]);
-	  value1(1,l) = interpolator1->interpolate("jx", xcord[i], ycord[j], zcord[k]);
-	  value1(2,l) = interpolator1->interpolate("rho", xcord[i], ycord[j], zcord[k]);
-	  value1(3,l) = interpolator1->interpolate("ux", xcord[i], ycord[j], zcord[k]);
-	  value2(0,l) = interpolator2->interpolate("bz", xcord[i], ycord[j], zcord[k]);
-	  value2(1,l) = interpolator2->interpolate("jx", xcord[i], ycord[j], zcord[k]);
-	  value2(2,l) = interpolator2->interpolate("rho", xcord[i], ycord[j], zcord[k]);
-	  value2(3,l) = interpolator2->interpolate("ux", xcord[i], ycord[j], zcord[k]);
-	  diff(0,l) = (( value1(0,l)-value2(0,l) ) / ( (value1(0,l)+value2(0,l)) / 2.0 ))*100.0;
-	  diff(1,l) = (( value1(1,l)-value2(1,l) ) / ( (value1(1,l)+value2(1,l)) / 2.0 ))*100.0;
-	  diff(2,l) = (( value1(2,l)-value2(2,l) ) / ( (value1(2,l)+value2(2,l)) / 2.0 ))*100.0;
-	  diff(3,l) = (( value1(3,l)-value2(3,l) ) / ( (value1(3,l)+value2(3,l)) / 2.0 ))*100.0;
+
+	  value1(0,l) = interpolator1->interpolate("x", xcord[i], ycord[j], zcord[k]);
+	  value1(1,l) = interpolator1->interpolate("y", xcord[i], ycord[j], zcord[k]);
+	  value1(2,l) = interpolator1->interpolate("z", xcord[i], ycord[j], zcord[k]);
+	  value1(3,l) = interpolator1->interpolate("bx", xcord[i], ycord[j], zcord[k]);
+	  value1(4,l) = interpolator1->interpolate("by", xcord[i], ycord[j], zcord[k]);
+	  value1(5,l) = interpolator1->interpolate("bz", xcord[i], ycord[j], zcord[k]);
+	  value1(6,l) = interpolator1->interpolate("jx", xcord[i], ycord[j], zcord[k]);
+	  value1(7,l) = interpolator1->interpolate("jy", xcord[i], ycord[j], zcord[k]);
+	  value1(8,l) = interpolator1->interpolate("jz", xcord[i], ycord[j], zcord[k]);
+	  value1(9,l) = interpolator1->interpolate("ux", xcord[i], ycord[j], zcord[k]);
+	  value1(10,l) = interpolator1->interpolate("uy", xcord[i], ycord[j], zcord[k]);
+	  value1(11,l) = interpolator1->interpolate("uz", xcord[i], ycord[j], zcord[k]);
+	  value1(12,l) = interpolator1->interpolate("p", xcord[i], ycord[j], zcord[k]);
+	  value1(13,l) = interpolator1->interpolate("rho", xcord[i], ycord[j], zcord[k]);
+
+	  value2(0,l) = interpolator2->interpolate("x", xcord[i], ycord[j], zcord[k]);
+	  value2(1,l) = interpolator2->interpolate("y", xcord[i], ycord[j], zcord[k]);
+	  value2(2,l) = interpolator2->interpolate("z", xcord[i], ycord[j], zcord[k]);
+	  value2(3,l) = interpolator2->interpolate("bx", xcord[i], ycord[j], zcord[k]);
+	  value2(4,l) = interpolator2->interpolate("by", xcord[i], ycord[j], zcord[k]);
+	  value2(5,l) = interpolator2->interpolate("bz", xcord[i], ycord[j], zcord[k]);
+	  value2(6,l) = interpolator2->interpolate("jx", xcord[i], ycord[j], zcord[k]);
+	  value2(7,l) = interpolator2->interpolate("jy", xcord[i], ycord[j], zcord[k]);
+	  value2(8,l) = interpolator2->interpolate("jz", xcord[i], ycord[j], zcord[k]);
+	  value2(9,l) = interpolator2->interpolate("ux", xcord[i], ycord[j], zcord[k]);
+	  value2(10,l) = interpolator2->interpolate("uy", xcord[i], ycord[j], zcord[k]);
+	  value2(11,l) = interpolator2->interpolate("uz", xcord[i], ycord[j], zcord[k]);
+	  value2(12,l) = interpolator2->interpolate("p", xcord[i], ycord[j], zcord[k]);
+	  value2(13,l) = interpolator2->interpolate("rho", xcord[i], ycord[j], zcord[k]);
+
+	  for (int vn = 0; vn < 14; vn++) {
+	    diff(vn,l) = (( value1(vn,l)-value2(vn,l) ) / ( (value1(vn,l)+value2(vn,l)) / 2.0 ))*100.0;
+	  }
+
 	  l++;
+
 	}
       }
     }
-    std::cout << "Interpolations and Differencing Complete" << std::endl;
+    std::cout << "Interpolations and Differencing Complete." << std::endl;
     ///////////////////////////////////////////////////////////////    
 
     kameleon1.close();

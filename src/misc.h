@@ -24,11 +24,12 @@ void vtk(std::string resultfilename, float *xcord, float *ycord, float *zcord, b
   int npoinz = 187;
 
   int i;
+  int vn;
+
   float val, val1, val2;
   FILE *myfile;
 
   FILE *myfile_cut;
-
   
   std::string cutfile;
   cutfile = resultfilename;
@@ -36,14 +37,17 @@ void vtk(std::string resultfilename, float *xcord, float *ycord, float *zcord, b
 
   myfile_cut = fopen(cutfile.c_str(),"w");
   std::cout << "Writing: " << cutfile << std::endl;  
-  for (i=0; i<npoinx*npoiny*npoinz; i++){
-    if (xyz(1,i) == 0.0) {
-      fprintf(myfile_cut,"%f %f %f %f %f %f\n",xyz(0,i),xyz(2,i),value(0,i),value(1,i),value(2,i),value(3,i));
+  for (i=0; i<npoinx*npoinz; i++){
+    fprintf(myfile_cut,"%f %f %f ",xyz(0,i),xyz(1,i),xyz(2,i));
+    for (vn = 0; vn < 14; vn++) {
+      fprintf(myfile_cut,"%e ",value(vn,i));
     }
+    fprintf(myfile_cut,"\n");
   }
   fclose(myfile_cut);
   std::cout << "Wrote: " << cutfile << std::endl;  
 
+  return;
 
   resultfilename.append(".vtk");
 
@@ -96,7 +100,7 @@ void vtk(std::string resultfilename, float *xcord, float *ycord, float *zcord, b
   }
 
   fclose(myfile);
-  
+
 }
 
 void rundirs(std::vector<std::string>* chooserun, const char* dirname) {
