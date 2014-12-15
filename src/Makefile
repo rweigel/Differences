@@ -15,7 +15,7 @@ HDF5_DIR=$(CURDIR)/../deps/hdf5-1.8.10-patch1
 HDF5_LIB=${HDF5_DIR}/lib
 HDF5=${HDF5_LIB}/lib/libhdf5.a
 
-all: reader diff pcdiff
+all: pcdiff
 
 unzip:
 	find ../data -name "*.cdf.gz" | xargs -i -P 12 gunzip {}
@@ -44,11 +44,11 @@ ${KAMELEON}: ${KAMELEON_DIR} ${CDF} ${HDF5_DIR} ${BOOST_DIR}
 		--with-boost-includes=${BOOST_DIR} --with-boost=${BOOST_DIR}
 	cd ${KAMELEON_DIR}; make all
 
-reader: ${KAMELEON} reader.cpp misc.h
-	g++ reader.cpp -o ../bin/reader -I${BOOST_DIR} -I${KAMELEON_DIR}/src/ ${KAMELEON} ${CDF}
+#reader: ${KAMELEON} reader.cpp misc.h
+#	g++ reader.cpp -o ../bin/reader -I${BOOST_DIR} -I${KAMELEON_DIR}/src/ ${KAMELEON} ${CDF}
 
-diff: ${KAMELEON} diff.cpp misc.h
-	g++ diff.cpp -o ../bin/diff -I${BOOST_DIR} -I${KAMELEON_DIR}/src/ ${KAMELEON} ${CDF}
+#diff: ${KAMELEON} diff.cpp misc.h
+#	g++ diff.cpp -o ../bin/diff -I${BOOST_DIR} -I${KAMELEON_DIR}/src/ ${KAMELEON} ${CDF}
 
 pcdiff: ${KAMELEON} pcdiff.cpp misc.h
 	g++ pcdiff.cpp -o ../bin/pcdiff -I${BOOST_DIR} -I${KAMELEON_DIR}/src/ ${KAMELEON} ${CDF}

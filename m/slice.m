@@ -7,9 +7,9 @@ end
 
 for i = 1:72
 
-    fname{1} = sprintf('data/%s/Results/Result_%02d_Y_eq_0.txt',A,i-1);
-    fname{2} = sprintf('data/%s/Results/Result_%02d_Y_eq_0.txt',B,i-1);
-    fname{3} = sprintf('data/Precondition/%s_minus_%s/pcdiff_%02d_Y_eq_0.txt',B,A,i-1);
+    fname{1} = sprintf('../data/%s/Results/Result_%02d_Y_eq_0.txt',A,i-1);
+    fname{2} = sprintf('../data/%s/Results/Result_%02d_Y_eq_0.txt',B,i-1);
+    fname{3} = sprintf('../data/Precondition/%s_minus_%s/pcdiff_%02d_Y_eq_0.txt',B,A,i-1);
     
     for k = 7:length(vars)
 

@@ -1,4 +1,5 @@
-clear;close all
+clear;close all;
+
 if exist('colorbarf') ~= 2
     addpath('colorbarf');
 end
@@ -15,17 +16,27 @@ VarsNaN = [  0,    0,   0,    0,    0,    0,   0,   2,  10,   0,   0,   0,   0, 
 Vars    = {'xg','yg','zg','xgi','ygi','zgi','B_x','B_y','B_z','J_x','J_y','J_z','U_x','U_y','U_z','P','N','B'};
 VarsU   = {'R_E','R_E','R_E','R_E','R_E','R_E','nT','nT','nT','pA','pA','pA','km/s','km/s','km/s','nPa','cm^{-3}','nT'};
 
+A  = 'Brian_Curtis_042213_3'; % BATSRUS
+Ta = '30';
+
+B  = 'Brian_Curtis_042213_7'; % BATSRUS
+Tb = '90';
+slice
+break
+B  = 'Brian_Curtis_102114_3'; % BATSRUS
+Tb = '210';
+slice
+
 A  = 'Brian_Curtis_042213_1'; % OpenGGCM
 Ta = '30';
 
 B  = 'Brian_Curtis_042213_5'; % OpenGGCM
 Tb = '90';
 slice
-break
 
-%B  = 'Brian_Curtis_102114_1'; % OpenGGCM
-%Tb = '210';
-%slice
+B  = 'Brian_Curtis_102114_1'; % OpenGGCM
+Tb = '210';
+slice
 
 A  = 'Brian_Curtis_042213_2'; % BATSRUS
 Ta = '30';

@@ -1,0 +1,14 @@
+Sensitivity of MHD models of Earth's magnetosphere to preconditioning
+
+Abstract
+
+We consider a set of validation experiments to determine the dependence of the length of initialization time on the predictions of  magnetohydrodynamic (MHD) models of Earth's magnetosphere. The experiment uses the Community Coordinated Modeling Center (CCMC) research tool, which allows runs of these models to be executed based on user-specified up-stream solar wind conditions, dipole tilt, and a model of ionospheric conductivity.  Three MHD implementations are considered; For each implementation, runs with reversals of $B_z$ in the GSM (Geocentric Solar Magnetospheric) coordinate system from +3.0~nT to -3.0~nT at 30 minutes, 90 minutes, and 210 minutes were executed.  All other solar wind conditions were set to be constant and equal to their long-term averages.  The dipole tilt was chosen to be zero throughout the run, and the ionospheric conductivity model was set to be ???.  We find and document significant differences in the predictions of models when the only parameter varied is the amout of time each was initialized: (1) ?; (2) ?; and (3) ?.  These results have implications in uncertainty estimates when a MHD models are used for interpretation and forecasting.
+
+Introduction
+
+Although limited time validation experiments have been performed [REFS], and a significant amount of reseach has used MHD models for interpretation of and comparison with in-situ measurements [REFS], little literature exists on basic validation experiments that can provide uncertainty estimates MHD model predictions.
+
+Experimental Set-Up
+
+Results
+

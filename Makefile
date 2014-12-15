@@ -2,13 +2,19 @@
 #B=Brian_Curtis_042213_5
 #O=18
 #B=Brian_Curtis_102114_1
-#O=36
+#O=35
 
-A=Brian_Curtis_042213_2
-B=Brian_Curtis_042213_6
-O=18
+#A=Brian_Curtis_042213_2
+#B=Brian_Curtis_042213_6
+#O=18
 #B=Brian_Curtis_102114_2
-#O=36
+#O=35
+
+A=Brian_Curtis_042213_3
+#B=Brian_Curtis_042213_7
+#O=18
+B=Brian_Curtis_102114_3
+O=35
 
 PARAVIEW=deps/ParaView-4.2.0-Linux-64bit
 
@@ -22,7 +28,8 @@ pcdiffvtk: src/pcdiff.cpp
 	mkdir -p data/$(B)/Results
 	mkdir -p data/Precondition/$(B)_minus_$(A)
 	./bin/pcdiff data/Precondition/$(B)_minus_$(A) data/$(A) data/$(B) $(O)
-	rsync -avm --include='*.txt' --include='*/' --exclude='*' data/ weigel@mag.gmu.edu:git/Differences/data/
+
+#	rsync -avm --include='*.txt' --include='*/' --exclude='*' data/ weigel@mag.gmu.edu:git/Differences/data/
 
 images:
 	~/ParaView-4.2.0-Linux-64bit/bin/pvbatch readerimg.py
