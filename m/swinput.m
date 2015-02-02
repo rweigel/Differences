@@ -4,7 +4,7 @@ Bzo = 3.1;
 Bzf = -3.0;
 for hr=0:7
     for mn = 0:59
-        if ((hr*60 + mn) <= 150)
+        if ((hr*60 + mn) < 150)
             fprintf(fid,'2000 1 1 %d %d 0 0 0 0 %.1f -441.71 0 0 5.76 101289\n',hr,mn,Bzo);
         else
             fprintf(fid,'2000 1 1 %d %d 0 0 0 0 %.1f -441.71 0 0 5.76 101289\n',hr,mn,Bzf);

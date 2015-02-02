@@ -7,9 +7,9 @@ end
 
 for i = 1:72
 
-    fname{1} = sprintf('../data/%s/Results/Result_%02d_Y_eq_0.txt',A,i-1);
-    fname{2} = sprintf('../data/%s/Results/Result_%02d_Y_eq_0.txt',B,i-1);
-    fname{3} = sprintf('../data/Precondition/%s_minus_%s/pcdiff_%02d_Y_eq_0.txt',B,A,i-1);
+    fname{1} = sprintf('../output/%s/Results/Result_%02d_Y_eq_0.txt',A,i-1);
+    fname{2} = sprintf('../output/%s/Results/Result_%02d_Y_eq_0.txt',B,i-1);
+    fname{3} = sprintf('../output/PreconditionDifferences/%s_minus_%s/pcdiff_%02d_Y_eq_0.txt',B,A,i-1);
     
     for k = 7:length(vars)
 
@@ -50,11 +50,12 @@ for i = 1:72
             x = reshape(X{1}(:,1),nx,nz);
             z = reshape(X{1}(:,3),nx,nz);
 
+            % Compute B
             if (k == 18)
                 X{j}(:,18) = sqrt(X{j}(:,7).^2+X{j}(:,8).^2+X{j}(:,9).^2);
             end
             
-            if (j == 3)
+            if (j == 3) % Difference plot
                 tmp = X{j}(:,k);
 
                 I = find(abs(X{j}(:,k)) < -100);
@@ -63,6 +64,7 @@ for i = 1:72
                 tmp(I) = 110;
                 V = [-110:10:110];
                 Nc = (length(V)-1);
+                % If either quantity is small, set difference to NaN
                 I = find(abs(X{1}(:,k)) < VarsNaN(k) | abs(X{2}(:,k)) < VarsNaN(k));
                 tmp(I) = NaN;
                 tmp(1) =  110; 
