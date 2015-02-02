@@ -20,10 +20,10 @@ all: pcdiff
 unzip:
 	find ../data -name "*.cdf.gz" | xargs -i -P 12 gunzip {}
 
-# Lots of warnings
 ${HDF5_DIR}:
 	cd ../deps; tar zxvf ${HDF5_TGZ}
 
+# Lots of warnings
 ${HDF5}: ${HDF5_DIR}
 	cd ${HDF5_DIR}; make all
 
@@ -44,14 +44,19 @@ ${KAMELEON}: ${KAMELEON_DIR} ${CDF} ${HDF5_DIR} ${BOOST_DIR}
 		--with-boost-includes=${BOOST_DIR} --with-boost=${BOOST_DIR}
 	cd ${KAMELEON_DIR}; make all
 
-#reader: ${KAMELEON} reader.cpp misc.h
-#	g++ reader.cpp -o ../bin/reader -I${BOOST_DIR} -I${KAMELEON_DIR}/src/ ${KAMELEON} ${CDF}
+#reader: ${KAMELEON} reader.cpp grid.h export.h
+reader: reader.cpp grid.h export.h
+	g++ reader.cpp -o ../bin/reader -I${BOOST_DIR} -I${KAMELEON_DIR}/src/ ${KAMELEON} ${CDF}
+
+#pcdiff: pcdiff.cpp misc.h ${KAMELEON}
+# Should be above, but Kameleon is remade every time make pcdiff is executed.
+pcdiff: pcdiff.cpp misc.h
+	g++ pcdiff.cpp -o ../bin/pcdiff -I${BOOST_DIR} -I${KAMELEON_DIR}/src/ ${KAMELEON} ${CDF}
+
 
 #diff: ${KAMELEON} diff.cpp misc.h
 #	g++ diff.cpp -o ../bin/diff -I${BOOST_DIR} -I${KAMELEON_DIR}/src/ ${KAMELEON} ${CDF}
 
-pcdiff: ${KAMELEON} pcdiff.cpp misc.h
-	g++ pcdiff.cpp -o ../bin/pcdiff -I${BOOST_DIR} -I${KAMELEON_DIR}/src/ ${KAMELEON} ${CDF}
 
 clean:
 	- rm ../bin/reader ../bin/diff ../bin/pcdiff

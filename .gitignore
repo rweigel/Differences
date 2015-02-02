@@ -1,6 +1,7 @@
 deps/*
 bin/
 data/
+output/
 data
 tgz/ParaView-4.0.1-Linux-64bit.tar.gz
 viviz/

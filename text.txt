@@ -6,7 +6,15 @@ We consider a set of validation experiments to determine the dependence of the l
 
 Introduction
 
-Although limited time validation experiments have been performed [REFS], and a significant amount of reseach has used MHD models for interpretation of and comparison with in-situ measurements [REFS], little literature exists on basic validation experiments that can provide uncertainty estimates MHD model predictions.
+Although short-time predictive validation experiments have been performed [REFS], and a significant amount of reseach has used MHD models for interpretation of and comparison with in-situ measurements [REFS], little literature exists on basic validation experiments that can provide uncertainty estimates MHD model predictions.  In this work, we peform internal validation tests on MHD models [Sargent, 2004].  
+
+MHD models are typically initialized by starting with a cold tenuous uniform plasma (Raeder 2003) with a mirror dipole placed sunward of Earth to create a surface with $B_x=0$.  Then, the field on the sunward side is replaced with the actual solar wind conditions.  Raeder 2003 (in Buchner et al. 2003) noted that because the magnetosphere can have a long memory of previous conditions, the amount of time for which the simulation is executed with the initial actual solar wind conditions should be at least several hours.
+
+Lavraud et al., 2006
+
+Juusola et al. 2013
+
+The motivation is to discover how sensitive MHD models are to the amount of time that they are preconditioned.
 
 Experimental Set-Up
 

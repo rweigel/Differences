@@ -1,0 +1,26 @@
+# make prep
+# make kameleon
+
+###########################################
+# System information for successful compile
+# uname -a
+# 3.5.0-18-generic #29~precise1-Ubuntu SMP Mon Oct 22 16:31:46 UTC 2012 x86_64 x86_64 x86_64 GNU/Linux
+
+# gcc -v
+# Using built-in specs.
+# COLLECT_GCC=gcc
+# COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/4.6/lto-wrapper
+# Target: x86_64-linux-gnu
+# Configured with: ../src/configure -v --with-pkgversion='Ubuntu/Linaro 4.6.3-1ubuntu5' --with-bugurl=file:///usr/share/doc/gcc-4.6/README.Bugs --enable-languages=c,c++,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-4.6 --enable-shared --enable-linker-build-id --with-system-zlib --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --with-gxx-include-dir=/usr/include/c++/4.6 --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --enable-gnu-unique-object --enable-plugin --enable-objc-gc --disable-werror --with-arch-32=i686 --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+#Thread model: posix
+#gcc version 4.6.3 (Ubuntu/Linaro 4.6.3-1ubuntu5) 
+
+# gfortran -v
+#Using built-in specs.
+#COLLECT_GCC=gfortran
+#COLLECT_LTO_WRAPPER=/usr/local/libexec/gcc/x86_64-apple-darwin11.3.0/4.8.0/lto-wrapper
+#Target: x86_64-apple-darwin11.3.0
+#Configured with: ../gcc-4.8-20120408/configure --enable-languages=fortran
+#Thread model: posix
+#gcc version 4.8.0 20120408 (experimental) (GCC) 
+###########################################

@@ -1,0 +1,35 @@
+21a22,23
+> set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+> 
+24c26
+< set(Boost_USE_MULTITHREADED ON)  
+---
+> #set(Boost_USE_MULTITHREADED ON)  
+26c28
+< find_package(Boost 1.54.0)
+---
+> find_package(Boost 1.57.0)
+29c31
+< 
+---
+>  
+39,45c41,47
+< 	if(HDF5_FOUND)
+< 		message(STATUS "HDF5 Found: Building Kameleon with HDF 5")
+< 		add_definitions(-DHAVE_HDF5)
+< 	else()
+< 		message(STATUS "HDF 5 was not found. Please install HDF5")
+< 		set(BUILD_HDF5 OFF)
+< 	endif(HDF5_FOUND)
+---
+>        if(HDF5_FOUND)
+>                message(STATUS "HDF5 Found: Building Kameleon with HDF 5")
+>                add_definitions(-DHAVE_HDF5)
+>        else()
+>                message(STATUS "HDF 5 was not found. Please install HDF5")
+>                set(BUILD_HDF5 OFF)
+>        endif(HDF5_FOUND)
+47c49
+< 	message(STATUS "Not Building HDF5 - CDF files only supported")
+---
+>        message(STATUS "Not Building HDF5 - CDF files only supported")

@@ -17,6 +17,8 @@
 #include <boost/random/variate_generator.hpp>
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/io.hpp>
+#include <boost/algorithm/string/replace.hpp>
+
 #include "misc.h"
 
 int main (int argc, char * argv[]){
@@ -111,12 +113,12 @@ int main (int argc, char * argv[]){
     filename1 = dirstring1;
     filename1.append("/");
     filename1.append(run1ls[loopnum]);
-    std::cout << filename1 << std::endl;
+    //std::cout << filename1 << std::endl;
 
     filename2 = dirstring2;
     filename2.append("/");
     filename2.append(run2ls[loopnum+off]);
-    std::cout << filename2 << std::endl;
+    //std::cout << filename2 << std::endl;
     
     long status1 = kameleon1.open(filename1);
     std::cout << "Opened: " << filename1 << " with status: " << status1 << std::endl;
@@ -138,8 +140,7 @@ int main (int argc, char * argv[]){
     if(kameleon1.doesVariableExist("uz")){kameleon1.loadVariable("uz");}else{return 1;}
     
     long status2 = kameleon2.open(filename2);
-    std::cout << "Opened file: " << filename2 << " with status: " << status2 << std::endl;
-    //std::cout << "ccmc:FileReader::OK = " << ccmc::FileReader::OK << std::endl;
+    std::cout << "Opened: " << filename2 << " with status: " << status2 << std::endl;
 
     if(kameleon2.doesVariableExist("x")){kameleon2.loadVariable("x");}else{return 1;}
     if(kameleon2.doesVariableExist("y")){kameleon2.loadVariable("y");}else{return 1;}
@@ -226,49 +227,17 @@ int main (int argc, char * argv[]){
 
     kameleon1.close();
     kameleon2.close();
-
-    ///////////////////////////////////////////////////////////////
-    std::string resultfilename1;
-    resultfilename1 = dir1s;
-    resultfilename1.append("/Results");
-    resultfilename1.append("/Result_");
-    if (loopnum < 10) {
-      resultfilename1.append("0");
-    }
-    resultfilename1.append(boost::lexical_cast<std::string>(loopnum));
-
-    std::cout << "Starting VTK Write of " << resultfilename1 << std::endl;
-    vtk(resultfilename1,xcord,ycord,zcord,value1,xyz);
-    std::cout << "Wrote: " << resultfilename1 << std::endl;
-    ///////////////////////////////////////////////////////////////
-    value1.clear();
-
-    ///////////////////////////////////////////////////////////////
-    std::string resultfilename2;
-    resultfilename2 = dir2s;
-    resultfilename2.append("/Results");
-    resultfilename2.append("/Result_");
-    if (loopnum < 10) {
-      resultfilename2.append("0");
-    }
-    resultfilename2.append(boost::lexical_cast<std::string>(loopnum));
-    std::cout << "Starting VTK Write of " << resultfilename2 << std::endl;
-    vtk(resultfilename2,xcord,ycord,zcord,value2,xyz);
-    std::cout << "Wrote: " << resultfilename2 << std::endl;
-    ///////////////////////////////////////////////////////////////
-    value2.clear();
     
     ///////////////////////////////////////////////////////////////
     std::string resultfilename;
     resultfilename = dirname;
+    boost::replace_all(resultfilename, "data/", "output/");
     resultfilename.append("/pcdiff_");
     if (loopnum < 10) {
       resultfilename.append("0");
     }
     resultfilename.append(boost::lexical_cast<std::string>(loopnum));
-    std::cout << "Starting VTK Write of " << resultfilename << std::endl;
     vtk(resultfilename,xcord,ycord,zcord,diff,xyz);
-    std::cout << "Wrote: " << resultfilename << std::endl;
     ///////////////////////////////////////////////////////////////
     diff.clear();
     

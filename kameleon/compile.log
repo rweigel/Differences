@@ -1,0 +1,539 @@
+mkdir kameleon-plus;
+cd kameleon-plus; cp ../CMakeLists.txt ../ccmc-software/kameleon-plus/trunk/kameleon-plus-working/CMakeLists.txt  
+cd kameleon-plus; cmake -DBOOST_ROOT=../deps/boost_1_57_0 \
+				-DCDF_LIB=../deps/cdf35_0-dist/src/lib/libcdf.so \
+				-DCDF_INCLUDES=../deps/cdf35_0-dist/src/include/ \
+				../ccmc-software/kameleon-plus/trunk/kameleon-plus-working
+-- The C compiler identification is GNU 4.6.3
+-- The CXX compiler identification is GNU 4.6.3
+-- Check for working C compiler: /usr/bin/gcc
+-- Check for working C compiler: /usr/bin/gcc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Kameleon_plus_version 6.0.0
+-- Could NOT find Boost
+-- BOOST_ROOT=../deps/boost_1_57_0
+-- Found HDF5: /usr/lib/libhdf5_cpp.a;/usr/lib/libhdf5.a  
+-- HDF5 Found: Building Kameleon with HDF 5
+-- ccmc library location = /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/lib/ccmc/libccmc.a
+-- ccmc/ - Include CDF: /home/weigel/git/Differences/kameleon/deps/cdf35_0-dist/src/include
+-- ccmc/ - link CDF: /home/weigel/git/Differences/kameleon/deps/cdf35_0-dist/src/lib/libcdf.so
+-- ccmc/ - Include HDF5: /usr/include
+-- ccmc/ - Link HDF5_LIBRARIES: /usr/lib/libhdf5_cpp.a/usr/lib/libhdf5.a
+-- Found SWIG: /usr/bin/swig2.0 (found version "2.0.4") 
+-- Found PythonLibs: /usr/lib/libpython2.7.so (found version "2.7.3") 
+-- wrappers/ SWIG_USE_FILE: /usr/share/cmake-2.8/Modules/UseSWIG.cmake
+-- wrappers/python/ Include HDF5: /usr/include
+-- wrappers/python/ Include boost directories: /usr/include
+-- wrappers/python/ Include CDF: /home/weigel/git/Differences/kameleon/deps/cdf35_0-dist/src/include
+-- Found Java: /usr/bin/java (found version "1.6.0.38") 
+-- Found JNI: /usr/lib/jvm/java-6-openjdk/jre/lib/amd64/libjawt.so  
+-- wrappers/java/ CMAKE_CURRENT_SOURCE_DIR: /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/wrappers/java
+-- wrappers/java/ kameleon_plus-wrapper-java location will be = /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/lib/ccmc/java/libkameleon_plus-wrapper-java-6.0.0.so
+-- c++/ Include HDF5: /usr/include
+-- c++/ Include boost directories: /usr/include
+-- c++/ Include CDF: /home/weigel/git/Differences/kameleon/deps/cdf35_0-dist/src/include
+-- c++/ Include HDF5: /usr/include
+-- c++/ Include boost directories: /usr/include
+-- c++/ Include CDF: /home/weigel/git/Differences/kameleon/deps/cdf35_0-dist/src/include
+-- The Fortran compiler identification is GNU
+-- Check for working Fortran compiler: /usr/bin/gfortran
+-- Check for working Fortran compiler: /usr/bin/gfortran  -- works
+-- Detecting Fortran compiler ABI info
+-- Detecting Fortran compiler ABI info - done
+-- Checking whether /usr/bin/gfortran supports Fortran 90
+-- Checking whether /usr/bin/gfortran supports Fortran 90 -- yes
+-- c++/ Include HDF5: /usr/include
+-- c++/ Include boost directories: /usr/include
+-- c++/ Include CDF: /home/weigel/git/Differences/kameleon/deps/cdf35_0-dist/src/include
+-- Python example files: /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/example/python/tracer.py/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/example/python/kameleon_test.py
+-- Will be installed to: /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/bin/examples/python
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/weigel/git/Differences/kameleon/kameleon-plus
+cd kameleon-plus; cp ../CMakeCache.txt .
+cd kameleon-plus; sed -i "s|/home/weigel/tmp2/|/home/weigel/git/Differences/kameleon/|g" CMakeCache.txt # Modify paths
+cd kameleon-plus; make -j24
+make[1]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+-- Kameleon_plus_version 6.0.0
+-- Could NOT find Boost
+-- BOOST_ROOT=../deps/boost_1_57_0
+-- Found HDF5: /usr/lib/libhdf5_cpp.so;/usr/lib/libhdf5.so  
+-- HDF5 Found: Building Kameleon with HDF 5
+-- ccmc library location = /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/lib/ccmc/libccmc.a
+-- ccmc/ - Include CDF: /home/weigel/git/Differences/kameleon/deps/cdf35_0-dist/src/include
+-- ccmc/ - link CDF: /home/weigel/git/Differences/kameleon/deps/cdf35_0-dist/src/lib/libcdf.so
+-- ccmc/ - Include HDF5: /usr/include
+-- ccmc/ - Link HDF5_LIBRARIES: /usr/lib/libhdf5_cpp.so/usr/lib/libhdf5.so
+-- wrappers/ SWIG_USE_FILE: /usr/share/cmake-2.8/Modules/UseSWIG.cmake
+-- wrappers/python/ Include HDF5: /usr/include
+-- wrappers/python/ Include boost directories: /usr/include
+-- wrappers/python/ Include CDF: /home/weigel/git/Differences/kameleon/deps/cdf35_0-dist/src/include
+-- wrappers/java/ CMAKE_CURRENT_SOURCE_DIR: /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/wrappers/java
+-- wrappers/java/ kameleon_plus-wrapper-java location will be = /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/lib/ccmc/java/libkameleon_plus-wrapper-java-6.0.0.so
+-- c++/ Include HDF5: /usr/include
+-- c++/ Include boost directories: /usr/include
+-- c++/ Include CDF: /home/weigel/git/Differences/kameleon/deps/cdf35_0-dist/src/include
+-- c++/ Include HDF5: /usr/include
+-- c++/ Include boost directories: /usr/include
+-- c++/ Include CDF: /home/weigel/git/Differences/kameleon/deps/cdf35_0-dist/src/include
+-- c++/ Include HDF5: /usr/include
+-- c++/ Include boost directories: /usr/include
+-- c++/ Include CDF: /home/weigel/git/Differences/kameleon/deps/cdf35_0-dist/src/include
+-- Python example files: /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/example/python/tracer.py/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/example/python/kameleon_test.py
+-- Will be installed to: /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/bin/examples/python
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/weigel/git/Differences/kameleon/kameleon-plus
+make[2]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+Scanning dependencies of target ccmc
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+[  1%] [  3%] [  3%] [  4%] [  6%] [  6%] [  7%] [  8%] [  9%] [ 10%] [ 13%] [ 13%] [ 13%] [ 15%] [ 15%] [ 16%] [ 17%] Building CXX object src/ccmc/CMakeFiles/ccmc.dir/SWMFIonoInterpolator.cpp.o
+Building CXX object src/ccmc/CMakeFiles/ccmc.dir/Fieldline.cpp.o
+Building CXX object src/ccmc/CMakeFiles/ccmc.dir/KameleonInterpolator_compute_jxb.cpp.o
+Building CXX object src/ccmc/CMakeFiles/ccmc.dir/KameleonInterpolator_compute_jpar.cpp.o
+Building CXX object src/ccmc/CMakeFiles/ccmc.dir/KameleonInterpolator_interpolateSimple.cpp.o
+Building CXX object src/ccmc/CMakeFiles/ccmc.dir/Kameleon_initializeListOfRequiredVariablesForComponentsAndVectors.cpp.o
+Building CXX object src/ccmc/CMakeFiles/ccmc.dir/Attribute.cpp.o
+Building CXX object src/ccmc/CMakeFiles/ccmc.dir/KameleonInterpolator_compute_magnitude.cpp.o
+Building CXX object src/ccmc/CMakeFiles/ccmc.dir/Adapt3DInterpolator.cpp.o
+Building CXX object src/ccmc/CMakeFiles/ccmc.dir/LFM.cpp.o
+[ 18%] [ 19%] Building CXX object src/ccmc/CMakeFiles/ccmc.dir/KameleonInterpolator_compute_etaj.cpp.o
+Building CXX object src/ccmc/CMakeFiles/ccmc.dir/KameleonInterpolator_compute_temp.cpp.o
+Building CXX object src/ccmc/CMakeFiles/ccmc.dir/LFMInterpolator.cpp.o
+Building CXX object src/ccmc/CMakeFiles/ccmc.dir/Point3f.cpp.o
+Building CXX object src/ccmc/CMakeFiles/ccmc.dir/KameleonInterpolator_compute_en.cpp.o
+Building CXX object src/ccmc/CMakeFiles/ccmc.dir/KameleonInterpolator_compute_pram.cpp.o
+Building CXX object src/ccmc/CMakeFiles/ccmc.dir/FileReader.cpp.o
+Building CXX object src/ccmc/CMakeFiles/ccmc.dir/KameleonInterpolator_compute_s.cpp.o
+[ 20%] [ 22%] [ 22%] Building CXX object src/ccmc/CMakeFiles/ccmc.dir/Adapt3D.cpp.o
+[ 23%] [ 25%] Building CXX object src/ccmc/CMakeFiles/ccmc.dir/BATSRUSInterpolator.cpp.o
+Building CXX object src/ccmc/CMakeFiles/ccmc.dir/CTIP.cpp.o
+Building CXX object src/ccmc/CMakeFiles/ccmc.dir/Magnetogram.cpp.o
+Building CXX object src/ccmc/CMakeFiles/ccmc.dir/TimeInterpolator.cpp.o
+Building CXX object src/ccmc/CMakeFiles/ccmc.dir/KameleonInterpolator_compute_e.cpp.o
+[ 26%] Building CXX object src/ccmc/CMakeFiles/ccmc.dir/KameleonInterpolator_compute_p.cpp.o
+[ 27%] Building CXX object src/ccmc/CMakeFiles/ccmc.dir/CCMCTime.cpp.o
+[ 28%] Building CXX object src/ccmc/CMakeFiles/ccmc.dir/Kameleon_open.cpp.o
+[ 29%] Building CXX object src/ccmc/CMakeFiles/ccmc.dir/CDFFileReader.cpp.o
+[ 30%] Building CXX object src/ccmc/CMakeFiles/ccmc.dir/KameleonInterpolator_compute_polb.cpp.o
+[ 31%] Building CXX object src/ccmc/CMakeFiles/ccmc.dir/KameleonInterpolator_compute_n.cpp.o
+[ 32%] Building CXX object src/ccmc/CMakeFiles/ccmc.dir/GeneralFileReader.cpp.o
+[ 33%] Building CXX object src/ccmc/CMakeFiles/ccmc.dir/KameleonInterpolator_compute_beta.cpp.o
+[ 34%] Building CXX object src/ccmc/CMakeFiles/ccmc.dir/KameleonInterpolator_compute_nv.cpp.o
+[ 35%] [ 36%] Building CXX object src/ccmc/CMakeFiles/ccmc.dir/MAS.cpp.o
+Building CXX object src/ccmc/CMakeFiles/ccmc.dir/MagnetogramInterpolator.cpp.o
+[ 37%] [ 38%] Building CXX object src/ccmc/CMakeFiles/ccmc.dir/Interpolator.cpp.o
+Building CXX object src/ccmc/CMakeFiles/ccmc.dir/KameleonInterpolator_compute_scaleByRadius.cpp.o
+[ 39%] Building CXX object src/ccmc/CMakeFiles/ccmc.dir/KameleonInterpolator_compute_exb.cpp.o
+[ 40%] [ 41%] Building CXX object src/ccmc/CMakeFiles/ccmc.dir/Tracer.cpp.o
+[ 42%] Building CXX object src/ccmc/CMakeFiles/ccmc.dir/KameleonInterpolator_compute_edotj.cpp.o
+Building CXX object src/ccmc/CMakeFiles/ccmc.dir/KameleonInterpolator_compute_gradient.cpp.o
+[ 43%] Building CXX object src/ccmc/CMakeFiles/ccmc.dir/ENLIL.cpp.o
+In file included from /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/LFMInterpolator.h:17:0,
+                 from /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/LFMInterpolator.cpp:7:
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Polyhedron.h: In member function ‘void ccmc::Polyhedron<T>::setLoopsFaces(const std::vector<int>&, const std::vector<int>&) [with T = float]’:
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/LFMInterpolator.h:161:3:   instantiated from ‘ccmc::GridPolyhedron<T>::GridPolyhedron(int, int, int, ccmc::LFMInterpolator*) [with T = float]’
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/LFMInterpolator.cpp:366:80:   instantiated from here
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Polyhedron.h:168:4: warning: converting to non-pointer type ‘int’ from NULL [-Wconversion-null]
+[ 44%] Building CXX object src/ccmc/CMakeFiles/ccmc.dir/MASInterpolator.cpp.o
+[ 45%] Building CXX object src/ccmc/CMakeFiles/ccmc.dir/KameleonInterpolator_initializeCalculationMethods.cpp.o
+[ 46%] [ 47%] Building CXX object src/ccmc/CMakeFiles/ccmc.dir/Kameleon_initializeUnits.cpp.o
+Building CXX object src/ccmc/CMakeFiles/ccmc.dir/KameleonInterpolator.cpp.o
+[ 48%] Building CXX object src/ccmc/CMakeFiles/ccmc.dir/OpenGGCM.cpp.o
+[ 50%] [ 51%] Building CXX object src/ccmc/CMakeFiles/ccmc.dir/Kameleon.cpp.o
+[ 52%] Building CXX object src/ccmc/CMakeFiles/ccmc.dir/ENLILInterpolator.cpp.o
+Building CXX object src/ccmc/CMakeFiles/ccmc.dir/Shue.cpp.o
+[ 53%] Building CXX object src/ccmc/CMakeFiles/ccmc.dir/Kameleon_initializeVariableAliases.cpp.o
+[ 54%] Building CXX object src/ccmc/CMakeFiles/ccmc.dir/BATSRUS.cpp.o
+[ 55%] Building CXX object src/ccmc/CMakeFiles/ccmc.dir/HDF5FileReader.cpp.o
+[ 56%] [ 57%] Building CXX object src/ccmc/CMakeFiles/ccmc.dir/SWMFIono.cpp.o
+Building CXX object src/ccmc/CMakeFiles/ccmc.dir/MathHelper.cpp.o
+[ 58%] Building CXX object src/ccmc/CMakeFiles/ccmc.dir/Model.cpp.o
+[ 59%] Building CXX object src/ccmc/CMakeFiles/ccmc.dir/OpenGGCMInterpolator.cpp.o
+[ 60%] Building C object src/ccmc/CMakeFiles/ccmc.dir/cxform-manual.c.o
+[ 61%] Building C object src/ccmc/CMakeFiles/ccmc.dir/cxform-auto.c.o
+Linking CXX static library /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/lib/ccmc/libccmc.a
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+[ 61%] Built target ccmc
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+[ 62%] [ 63%] Scanning dependencies of target CDFReader
+Scanning dependencies of target IMFTest
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+Scanning dependencies of target adapt3d_test
+Swig source
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+Scanning dependencies of target ccmc_wrapper_c
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+Scanning dependencies of target enlil_test
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+Swig source
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+Scanning dependencies of target swmf_iono_test
+Scanning dependencies of target magnetogram_test
+Scanning dependencies of target integrator_prog
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+Scanning dependencies of target mas_test
+Scanning dependencies of target coordinate_transformation_test
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+Scanning dependencies of target kameleon_prog
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+Scanning dependencies of target open_ggcm_test
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+Scanning dependencies of target lfm_test
+Scanning dependencies of target tracer_prog
+[ 64%] [ 65%] make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+Scanning dependencies of target time_interp
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+[ 66%] make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+[ 67%] make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+[ 69%] [ 69%] Building CXX object src/example/c++/CMakeFiles/IMFTest.dir/IMFTest.cpp.o
+[ 70%] [ 71%] [ 72%] [ 73%] [ 75%] [ 76%] Building CXX object src/example/c++/CMakeFiles/CDFReader.dir/CDFReader.cpp.o
+[ 77%] [ 78%] Building CXX object src/ccmc/wrappers/c/CMakeFiles/ccmc_wrapper_c.dir/Kameleon_c.cpp.o
+[ 79%] [ 80%] [ 81%] Building CXX object src/ccmc/wrappers/c/CMakeFiles/ccmc_wrapper_c.dir/GeneralFileReader_c.cpp.o
+[ 82%] Building CXX object src/example/c++/CMakeFiles/enlil_test.dir/enlil_test.cpp.o
+Building CXX object src/ccmc/wrappers/c/CMakeFiles/ccmc_wrapper_c.dir/TimeInterpolator_c.cpp.o
+Building CXX object src/example/c++/CMakeFiles/adapt3d_test.dir/adapt3d_test.cpp.o
+Building CXX object src/example/c++/CMakeFiles/swmf_iono_test.dir/swmf_iono_test.cpp.o
+Building CXX object src/ccmc/wrappers/c/CMakeFiles/ccmc_wrapper_c.dir/Tracer_c.cpp.o
+Building CXX object src/example/c++/CMakeFiles/integrator_prog.dir/integrator_prog.cpp.o
+Building CXX object src/example/c++/CMakeFiles/kameleon_prog.dir/kameleon_prog.cpp.o
+Building CXX object src/example/c++/CMakeFiles/mas_test.dir/mas_test.cpp.o
+Building CXX object src/example/c++/CMakeFiles/tracer_prog.dir/tracer_prog.cpp.o
+Building CXX object src/example/c++/CMakeFiles/coordinate_transformation_test.dir/coordinate_transformation_test.cpp.o
+Building CXX object src/example/c++/CMakeFiles/magnetogram_test.dir/magnetogram_test.cpp.o
+Building CXX object src/example/c++/CMakeFiles/open_ggcm_test.dir/open_ggcm_test.cpp.o
+Building CXX object src/example/c++/CMakeFiles/time_interp.dir/time_interp.cpp.o
+Building CXX object src/example/c++/CMakeFiles/lfm_test.dir/lfm_test.cpp.o
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/cdf.h:1612: Warning 305: Bad constant value (ignored).
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/cdf.h:1615: Warning 305: Bad constant value (ignored).
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Kameleon.h:60: Warning 322: Redundant redeclaration of 'EPOCH3_STRING_LEN',
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/cdf.h:95: Warning 322: previous declaration of 'EPOCH3_STRING_LEN'.
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/cdf.h:1612: Warning 305: Bad constant value (ignored).
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/cdf.h:1615: Warning 305: Bad constant value (ignored).
+Linking CXX executable /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/bin/examples/c++/IMFTest
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+[ 82%] Built target IMFTest
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Polyhedron.h:58: Warning 314: 'lambda' is a python keyword, renaming to '_lambda'
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Polyhedron.h:58: Warning 314: 'lambda' is a python keyword, renaming to '_lambda'
+Linking CXX executable /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/bin/examples/c++/magnetogram_test
+Linking CXX executable /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/bin/examples/c++/CDFReader
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+[ 82%] Built target magnetogram_test
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+[ 82%] /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Point3f.h:10: Warning 503: Can't wrap 'operator <<' unless renamed to a valid identifier.
+Built target CDFReader
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Point3f.h:31: Warning 503: Can't wrap 'operator +' unless renamed to a valid identifier.
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Point3f.h:32: Warning 503: Can't wrap 'operator -' unless renamed to a valid identifier.
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Point3f.h:33: Warning 503: Can't wrap 'operator *' unless renamed to a valid identifier.
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Point3f.h:34: Warning 503: Can't wrap 'operator *' unless renamed to a valid identifier.
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Attribute.h:44: Warning 503: Can't wrap 'operator <<' unless renamed to a valid identifier.
+Linking CXX executable /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/bin/examples/c++/swmf_iono_test
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Point3f.h:10: Warning 503: Can't wrap 'operator <<' unless renamed to a valid identifier.
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Attribute.h:44: Warning 503: Can't wrap 'operator <<' unless renamed to a valid identifier.
+Linking CXX executable /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/bin/examples/c++/time_interp
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+[ 82%] Built target swmf_iono_test
+Linking CXX executable /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/bin/examples/c++/enlil_test
+Linking CXX executable /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/bin/examples/c++/mas_test
+Linking CXX executable /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/bin/examples/c++/open_ggcm_test
+Linking CXX executable /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/bin/examples/c++/kameleon_prog
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+[ 82%] Built target enlil_test
+Linking CXX executable /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/bin/examples/c++/coordinate_transformation_test
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+[ 82%] Linking CXX executable /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/bin/examples/c++/tracer_prog
+Built target coordinate_transformation_test
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+[ 82%] Built target mas_test
+[ 82%] Built target open_ggcm_test
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+Linking CXX executable /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/bin/examples/c++/adapt3d_test
+[ 82%] Built target time_interp
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/CCMCTime.h:50: Warning 503: Can't wrap 'operator <<' unless renamed to a valid identifier.
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/CCMCTime.h:51: Warning 503: Can't wrap 'operator -' unless renamed to a valid identifier.
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/CCMCTime.h:52: Warning 503: Can't wrap 'operator ==' unless renamed to a valid identifier.
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/CCMCTime.h:53: Warning 503: Can't wrap 'operator <' unless renamed to a valid identifier.
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/CCMCTime.h:54: Warning 503: Can't wrap 'operator >' unless renamed to a valid identifier.
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/CCMCTime.h:55: Warning 503: Can't wrap 'operator >=' unless renamed to a valid identifier.
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Vector.h:37: Warning 509: Overloaded method ccmc::Vector< float >::dot(ccmc::Vector< float > *,ccmc::Vector< float > *) effectively ignored,
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Vector.h:36: Warning 509: as it is shadowed by ccmc::Vector< float >::dot(ccmc::Vector< float > &,ccmc::Vector< float > &).
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Vector.h:39: Warning 509: Overloaded method ccmc::Vector< float >::cross(ccmc::Vector< float > *,ccmc::Vector< float > *) effectively ignored,
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Vector.h:38: Warning 509: as it is shadowed by ccmc::Vector< float >::cross(ccmc::Vector< float > &,ccmc::Vector< float > &).
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Vector.h:43: Warning 509: Overloaded method ccmc::Vector< float >::norm(ccmc::Vector< float > *) effectively ignored,
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Vector.h:42: Warning 509: as it is shadowed by ccmc::Vector< float >::norm(ccmc::Vector< float > &).
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Vector.h:44: Warning 509: Overloaded method ccmc::Vector< float >::norm() effectively ignored,
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Vector.h:42: Warning 509: as it is shadowed by ccmc::Vector< float >::norm(ccmc::Vector< float > &).
+[ 82%] Built target kameleon_prog
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Vector.h:28: Warning 503: Can't wrap 'operator +' unless renamed to a valid identifier.
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Vector.h:29: Warning 503: Can't wrap 'operator -' unless renamed to a valid identifier.
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Vector.h:30: Warning 503: Can't wrap 'operator *' unless renamed to a valid identifier.
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Vector.h:31: Warning 503: Can't wrap 'operator /' unless renamed to a valid identifier.
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Vector.h:32: Warning 503: Can't wrap 'operator +=' unless renamed to a valid identifier.
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Vector.h:33: Warning 503: Can't wrap 'operator -=' unless renamed to a valid identifier.
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Vector.h:34: Warning 503: Can't wrap 'operator *=' unless renamed to a valid identifier.
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Vector.h:35: Warning 503: Can't wrap 'operator /=' unless renamed to a valid identifier.
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Vector.h:37: Warning 516: Overloaded method ccmc::Vector< float >::dot(ccmc::Vector< float > *,ccmc::Vector< float > *) ignored,
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Vector.h:36: Warning 516: using ccmc::Vector< float >::dot(ccmc::Vector< float > &,ccmc::Vector< float > &) instead.
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Vector.h:39: Warning 516: Overloaded method ccmc::Vector< float >::cross(ccmc::Vector< float > *,ccmc::Vector< float > *) ignored,
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Vector.h:38: Warning 516: using ccmc::Vector< float >::cross(ccmc::Vector< float > &,ccmc::Vector< float > &) instead.
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Vector.h:43: Warning 516: Overloaded method ccmc::Vector< float >::norm(ccmc::Vector< float > *) ignored,
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Vector.h:42: Warning 516: using ccmc::Vector< float >::norm(ccmc::Vector< float > &) instead.
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Vector.h:44: Warning 516: Overloaded method ccmc::Vector< float >::norm() ignored,
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Vector.h:42: Warning 516: using ccmc::Vector< float >::norm(ccmc::Vector< float > &) instead.
+Linking CXX static library /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/lib/ccmc/c/libccmc_wrapper_c.a
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+Linking CXX executable /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/bin/examples/c++/integrator_prog
+[ 82%] Built target ccmc_wrapper_c
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+Scanning dependencies of target kameleon_compat_test
+Scanning dependencies of target time_interp_c
+Scanning dependencies of target filereader_compat_test
+Scanning dependencies of target tracer_c
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+Scanning dependencies of target ccmc_wrapper_fortran
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+[ 85%] [ 85%] [ 85%] [ 86%] [ 87%] Building C object src/example/c/CMakeFiles/time_interp_c.dir/time_interpolator_test.c.o
+Building C object src/example/c/CMakeFiles/tracer_c.dir/tracer_prog.c.o
+Building C object src/example/c/CMakeFiles/kameleon_compat_test.dir/Kameleon_compatibility_test.c.o
+Building C object src/example/c/CMakeFiles/filereader_compat_test.dir/GeneralFileReader_compatibility_test.c.o
+[ 89%] [ 89%] [ 90%] Building CXX object src/ccmc/wrappers/fortran/CMakeFiles/ccmc_wrapper_fortran.dir/Kameleon_f.cpp.o
+Building CXX object src/ccmc/wrappers/fortran/CMakeFiles/ccmc_wrapper_fortran.dir/GeneralFileReader_f.cpp.o
+Building CXX object src/ccmc/wrappers/fortran/CMakeFiles/ccmc_wrapper_fortran.dir/Tracer_f.cpp.o
+Building CXX object src/ccmc/wrappers/fortran/CMakeFiles/ccmc_wrapper_fortran.dir/TimeInterp_f.cpp.o
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+[ 90%] Built target adapt3d_test
+Linking CXX executable /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/bin/examples/c/kameleon_compat_test
+Linking CXX executable /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/bin/examples/c/filereader_compat_test
+Linking CXX executable /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/bin/examples/c/time_interp_c
+Linking CXX executable /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/bin/examples/c/tracer_c
+Scanning dependencies of target kameleon_plus-wrapper-java-6.0.0
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+[ 91%] Building CXX object src/ccmc/wrappers/java/CMakeFiles/kameleon_plus-wrapper-java-6.0.0.dir/__/ccmcJavaJAVA_wrap.cxx.o
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+[ 91%] Built target tracer_prog
+Linking CXX executable /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/bin/examples/c++/lfm_test
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+[ 91%] Built target integrator_prog
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+[ 91%] Built target time_interp_c
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+[ 91%] Built target kameleon_compat_test
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+[ 91%] [ 91%] Built target filereader_compat_test
+Built target tracer_c
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+[ 91%] Built target lfm_test
+Scanning dependencies of target _CCMC
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+[ 91%] Swig source
+Linking CXX static library /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/lib/ccmc/fortran/libccmc_wrapper_fortran.a
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+[ 91%] Built target ccmc_wrapper_fortran
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/cdf.h:1612: Warning 305: Bad constant value (ignored).
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/cdf.h:1615: Warning 305: Bad constant value (ignored).
+Scanning dependencies of target generalfilereader_compat_f
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+Scanning dependencies of target tracer_compat_f
+Scanning dependencies of target kameleon_compat_f
+Scanning dependencies of target timeinterp_compat_f
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+[ 92%] [ 93%] [ 94%] [ 95%] Building Fortran object src/example/fortran/CMakeFiles/generalfilereader_compat_f.dir/GeneralFileReader_compatibility_test_f.f.o
+Building Fortran object src/example/fortran/CMakeFiles/tracer_compat_f.dir/Tracer_test_f.f.o
+Building Fortran object src/example/fortran/CMakeFiles/kameleon_compat_f.dir/Kameleon_compatibility_test_f.f.o
+Building Fortran object src/example/fortran/CMakeFiles/timeinterp_compat_f.dir/timeinterp_compatibility_test_f.f.o
+Using built-in specs.
+COLLECT_GCC=/usr/bin/gfortran
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/4.6/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu/Linaro 4.6.3-1ubuntu5' --with-bugurl=file:///usr/share/doc/gcc-4.6/README.Bugs --enable-languages=c,c++,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-4.6 --enable-shared --enable-linker-build-id --with-system-zlib --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --with-gxx-include-dir=/usr/include/c++/4.6 --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --enable-gnu-unique-object --enable-plugin --enable-objc-gc --disable-werror --with-arch-32=i686 --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 4.6.3 (Ubuntu/Linaro 4.6.3-1ubuntu5) 
+COLLECT_GCC_OPTIONS='-D' 'HAVE_HDF5' '-D' 'HAVE_HDF5' '-v' '-fPIE' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/wrappers/c' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/wrappers/fortran' '-I' '/usr/include' '-I' '/home/weigel/git/Differences/kameleon/deps/cdf35_0-dist/src/include' '-c' '-o' 'CMakeFiles/generalfilereader_compat_f.dir/GeneralFileReader_compatibility_test_f.f.o' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/4.6/f951 /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/example/fortran/GeneralFileReader_compatibility_test_f.f -ffixed-form -I /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc -I /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/wrappers/c -I /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/wrappers/fortran -I /usr/include -I /home/weigel/git/Differences/kameleon/deps/cdf35_0-dist/src/include -quiet -dumpbase GeneralFileReader_compatibility_test_f.f -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/generalfilereader_compat_f.dir/GeneralFileReader_compatibility_test_f.f.o -version -fPIE -fintrinsic-modules-path /usr/lib/gcc/x86_64-linux-gnu/4.6/finclude -o /tmp/ccoQYaIF.s
+Using built-in specs.
+COLLECT_GCC=/usr/bin/gfortran
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/4.6/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu/Linaro 4.6.3-1ubuntu5' --with-bugurl=file:///usr/share/doc/gcc-4.6/README.Bugs --enable-languages=c,c++,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-4.6 --enable-shared --enable-linker-build-id --with-system-zlib --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --with-gxx-include-dir=/usr/include/c++/4.6 --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --enable-gnu-unique-object --enable-plugin --enable-objc-gc --disable-werror --with-arch-32=i686 --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 4.6.3 (Ubuntu/Linaro 4.6.3-1ubuntu5) 
+COLLECT_GCC_OPTIONS='-D' 'HAVE_HDF5' '-D' 'HAVE_HDF5' '-v' '-fPIE' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/wrappers/c' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/wrappers/fortran' '-I' '/usr/include' '-I' '/home/weigel/git/Differences/kameleon/deps/cdf35_0-dist/src/include' '-c' '-o' 'CMakeFiles/tracer_compat_f.dir/Tracer_test_f.f.o' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/4.6/f951 /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/example/fortran/Tracer_test_f.f -ffixed-form -I /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc -I /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/wrappers/c -I /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/wrappers/fortran -I /usr/include -I /home/weigel/git/Differences/kameleon/deps/cdf35_0-dist/src/include -quiet -dumpbase Tracer_test_f.f -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/tracer_compat_f.dir/Tracer_test_f.f.o -version -fPIE -fintrinsic-modules-path /usr/lib/gcc/x86_64-linux-gnu/4.6/finclude -o /tmp/ccrYiYCF.s
+Using built-in specs.
+COLLECT_GCC=/usr/bin/gfortran
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/4.6/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu/Linaro 4.6.3-1ubuntu5' --with-bugurl=file:///usr/share/doc/gcc-4.6/README.Bugs --enable-languages=c,c++,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-4.6 --enable-shared --enable-linker-build-id --with-system-zlib --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --with-gxx-include-dir=/usr/include/c++/4.6 --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --enable-gnu-unique-object --enable-plugin --enable-objc-gc --disable-werror --with-arch-32=i686 --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 4.6.3 (Ubuntu/Linaro 4.6.3-1ubuntu5) 
+COLLECT_GCC_OPTIONS='-D' 'HAVE_HDF5' '-D' 'HAVE_HDF5' '-v' '-fPIE' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/wrappers/c' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/wrappers/fortran' '-I' '/usr/include' '-I' '/home/weigel/git/Differences/kameleon/deps/cdf35_0-dist/src/include' '-c' '-o' 'CMakeFiles/kameleon_compat_f.dir/Kameleon_compatibility_test_f.f.o' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/4.6/f951 /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/example/fortran/Kameleon_compatibility_test_f.f -ffixed-form -I /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc -I /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/wrappers/c -I /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/wrappers/fortran -I /usr/include -I /home/weigel/git/Differences/kameleon/deps/cdf35_0-dist/src/include -quiet -dumpbase Kameleon_compatibility_test_f.f -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/kameleon_compat_f.dir/Kameleon_compatibility_test_f.f.o -version -fPIE -fintrinsic-modules-path /usr/lib/gcc/x86_64-linux-gnu/4.6/finclude -o /tmp/ccyumvKI.s
+GNU Fortran (Ubuntu/Linaro 4.6.3-1ubuntu5) version 4.6.3 (x86_64-linux-gnu)
+	compiled by GNU C version 4.6.3, GMP version 5.0.2, MPFR version 3.1.0-p3, MPC version 0.9
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+GNU Fortran (Ubuntu/Linaro 4.6.3-1ubuntu5) version 4.6.3 (x86_64-linux-gnu)
+	compiled by GNU C version 4.6.3, GMP version 5.0.2, MPFR version 3.1.0-p3, MPC version 0.9
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+Using built-in specs.
+COLLECT_GCC=/usr/bin/gfortran
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/4.6/lto-wrapper
+Target: x86_64-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu/Linaro 4.6.3-1ubuntu5' --with-bugurl=file:///usr/share/doc/gcc-4.6/README.Bugs --enable-languages=c,c++,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-4.6 --enable-shared --enable-linker-build-id --with-system-zlib --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --with-gxx-include-dir=/usr/include/c++/4.6 --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --enable-gnu-unique-object --enable-plugin --enable-objc-gc --disable-werror --with-arch-32=i686 --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+Thread model: posix
+gcc version 4.6.3 (Ubuntu/Linaro 4.6.3-1ubuntu5) 
+COLLECT_GCC_OPTIONS='-D' 'HAVE_HDF5' '-D' 'HAVE_HDF5' '-v' '-fPIE' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/wrappers/c' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/wrappers/fortran' '-I' '/usr/include' '-I' '/home/weigel/git/Differences/kameleon/deps/cdf35_0-dist/src/include' '-c' '-o' 'CMakeFiles/timeinterp_compat_f.dir/timeinterp_compatibility_test_f.f.o' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/4.6/f951 /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/example/fortran/timeinterp_compatibility_test_f.f -ffixed-form -I /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc -I /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/wrappers/c -I /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/wrappers/fortran -I /usr/include -I /home/weigel/git/Differences/kameleon/deps/cdf35_0-dist/src/include -quiet -dumpbase timeinterp_compatibility_test_f.f -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/timeinterp_compat_f.dir/timeinterp_compatibility_test_f.f.o -version -fPIE -fintrinsic-modules-path /usr/lib/gcc/x86_64-linux-gnu/4.6/finclude -o /tmp/ccNediHI.s
+GNU Fortran (Ubuntu/Linaro 4.6.3-1ubuntu5) version 4.6.3 (x86_64-linux-gnu)
+	compiled by GNU C version 4.6.3, GMP version 5.0.2, MPFR version 3.1.0-p3, MPC version 0.9
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+GNU Fortran (Ubuntu/Linaro 4.6.3-1ubuntu5) version 4.6.3 (x86_64-linux-gnu)
+	compiled by GNU C version 4.6.3, GMP version 5.0.2, MPFR version 3.1.0-p3, MPC version 0.9
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+GNU Fortran (Ubuntu/Linaro 4.6.3-1ubuntu5) version 4.6.3 (x86_64-linux-gnu)
+	compiled by GNU C version 4.6.3, GMP version 5.0.2, MPFR version 3.1.0-p3, MPC version 0.9
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+GNU Fortran (Ubuntu/Linaro 4.6.3-1ubuntu5) version 4.6.3 (x86_64-linux-gnu)
+	compiled by GNU C version 4.6.3, GMP version 5.0.2, MPFR version 3.1.0-p3, MPC version 0.9
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+GNU Fortran (Ubuntu/Linaro 4.6.3-1ubuntu5) version 4.6.3 (x86_64-linux-gnu)
+	compiled by GNU C version 4.6.3, GMP version 5.0.2, MPFR version 3.1.0-p3, MPC version 0.9
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+GNU Fortran (Ubuntu/Linaro 4.6.3-1ubuntu5) version 4.6.3 (x86_64-linux-gnu)
+	compiled by GNU C version 4.6.3, GMP version 5.0.2, MPFR version 3.1.0-p3, MPC version 0.9
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+COLLECT_GCC_OPTIONS='-D' 'HAVE_HDF5' '-D' 'HAVE_HDF5' '-v' '-fPIE' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/wrappers/c' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/wrappers/fortran' '-I' '/usr/include' '-I' '/home/weigel/git/Differences/kameleon/deps/cdf35_0-dist/src/include' '-c' '-o' 'CMakeFiles/generalfilereader_compat_f.dir/GeneralFileReader_compatibility_test_f.f.o' '-mtune=generic' '-march=x86-64'
+ as --64 -o CMakeFiles/generalfilereader_compat_f.dir/GeneralFileReader_compatibility_test_f.f.o /tmp/ccoQYaIF.s
+COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/4.6/:/usr/lib/gcc/x86_64-linux-gnu/4.6/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/4.6/:/usr/lib/gcc/x86_64-linux-gnu/
+LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/4.6/:/usr/lib/gcc/x86_64-linux-gnu/4.6/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/4.6/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/4.6/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-D' 'HAVE_HDF5' '-D' 'HAVE_HDF5' '-v' '-fPIE' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/wrappers/c' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/wrappers/fortran' '-I' '/usr/include' '-I' '/home/weigel/git/Differences/kameleon/deps/cdf35_0-dist/src/include' '-c' '-o' 'CMakeFiles/generalfilereader_compat_f.dir/GeneralFileReader_compatibility_test_f.f.o' '-mtune=generic' '-march=x86-64'
+COLLECT_GCC_OPTIONS='-D' 'HAVE_HDF5' '-D' 'HAVE_HDF5' '-v' '-fPIE' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/wrappers/c' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/wrappers/fortran' '-I' '/usr/include' '-I' '/home/weigel/git/Differences/kameleon/deps/cdf35_0-dist/src/include' '-c' '-o' 'CMakeFiles/kameleon_compat_f.dir/Kameleon_compatibility_test_f.f.o' '-mtune=generic' '-march=x86-64'
+COLLECT_GCC_OPTIONS='-D' 'HAVE_HDF5' '-D' 'HAVE_HDF5' '-v' '-fPIE' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/wrappers/c' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/wrappers/fortran' '-I' '/usr/include' '-I' '/home/weigel/git/Differences/kameleon/deps/cdf35_0-dist/src/include' '-c' '-o' 'CMakeFiles/tracer_compat_f.dir/Tracer_test_f.f.o' '-mtune=generic' '-march=x86-64'
+ as --64 -o CMakeFiles/kameleon_compat_f.dir/Kameleon_compatibility_test_f.f.o /tmp/ccyumvKI.s as
+ --64 -o CMakeFiles/tracer_compat_f.dir/Tracer_test_f.f.o /tmp/ccrYiYCF.s
+COLLECT_GCC_OPTIONS='-D' 'HAVE_HDF5' '-D' 'HAVE_HDF5' '-v' '-fPIE' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/wrappers/c' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/wrappers/fortran' '-I' '/usr/include' '-I' '/home/weigel/git/Differences/kameleon/deps/cdf35_0-dist/src/include' '-c' '-o' 'CMakeFiles/timeinterp_compat_f.dir/timeinterp_compatibility_test_f.f.o' '-mtune=generic' '-march=x86-64'
+ as --64 -o CMakeFiles/timeinterp_compat_f.dir/timeinterp_compatibility_test_f.f.o /tmp/ccNediHI.s
+Linking CXX executable /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/bin/examples/fortran/generalfilereader_compat_f
+COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/4.6/:/usr/lib/gcc/x86_64-linux-gnu/4.6/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/4.6/:/usr/lib/gcc/x86_64-linux-gnu/
+LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/4.6/:/usr/lib/gcc/x86_64-linux-gnu/4.6/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/4.6/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/4.6/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-D' 'HAVE_HDF5' '-D' 'HAVE_HDF5' '-v' '-fPIE' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/wrappers/c' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/wrappers/fortran' '-I' '/usr/include' '-I' '/home/weigel/git/Differences/kameleon/deps/cdf35_0-dist/src/include' '-c' '-o' 'CMakeFiles/tracer_compat_f.dir/Tracer_test_f.f.o' '-mtune=generic' '-march=x86-64'
+COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/4.6/:/usr/lib/gcc/x86_64-linux-gnu/4.6/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/4.6/:/usr/lib/gcc/x86_64-linux-gnu/
+LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/4.6/:/usr/lib/gcc/x86_64-linux-gnu/4.6/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/4.6/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/4.6/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-D' 'HAVE_HDF5' '-D' 'HAVE_HDF5' '-v' '-fPIE' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/wrappers/c' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/wrappers/fortran' '-I' '/usr/include' '-I' '/home/weigel/git/Differences/kameleon/deps/cdf35_0-dist/src/include' '-c' '-o' 'CMakeFiles/timeinterp_compat_f.dir/timeinterp_compatibility_test_f.f.o' '-mtune=generic' '-march=x86-64'
+COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/4.6/:/usr/lib/gcc/x86_64-linux-gnu/4.6/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/4.6/:/usr/lib/gcc/x86_64-linux-gnu/
+LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/4.6/:/usr/lib/gcc/x86_64-linux-gnu/4.6/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/4.6/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/4.6/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-D' 'HAVE_HDF5' '-D' 'HAVE_HDF5' '-v' '-fPIE' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/wrappers/c' '-I' '/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/wrappers/fortran' '-I' '/usr/include' '-I' '/home/weigel/git/Differences/kameleon/deps/cdf35_0-dist/src/include' '-c' '-o' 'CMakeFiles/kameleon_compat_f.dir/Kameleon_compatibility_test_f.f.o' '-mtune=generic' '-march=x86-64'
+Linking CXX executable /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/bin/examples/fortran/tracer_compat_f
+Linking CXX executable /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/bin/examples/fortran/kameleon_compat_f
+Linking CXX executable /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/bin/examples/fortran/timeinterp_compat_f
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Polyhedron.h:58: Warning 314: 'lambda' is a python keyword, renaming to '_lambda'
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Polyhedron.h:58: Warning 314: 'lambda' is a python keyword, renaming to '_lambda'
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+[ 95%] Built target generalfilereader_compat_f
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+[ 95%] Built target tracer_compat_f
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+[ 95%] Built target timeinterp_compat_f
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+[ 95%] Built target kameleon_compat_f
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Point3f.h:10: Warning 503: Can't wrap 'operator <<' unless renamed to a valid identifier.
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Attribute.h:44: Warning 503: Can't wrap 'operator <<' unless renamed to a valid identifier.
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Vector.h:37: Warning 509: Overloaded method ccmc::Vector< float >::dot(ccmc::Vector< float > *,ccmc::Vector< float > *) effectively ignored,
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Vector.h:36: Warning 509: as it is shadowed by ccmc::Vector< float >::dot(ccmc::Vector< float > &,ccmc::Vector< float > &).
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Vector.h:39: Warning 509: Overloaded method ccmc::Vector< float >::cross(ccmc::Vector< float > *,ccmc::Vector< float > *) effectively ignored,
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Vector.h:38: Warning 509: as it is shadowed by ccmc::Vector< float >::cross(ccmc::Vector< float > &,ccmc::Vector< float > &).
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Vector.h:43: Warning 509: Overloaded method ccmc::Vector< float >::norm(ccmc::Vector< float > *) effectively ignored,
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Vector.h:42: Warning 509: as it is shadowed by ccmc::Vector< float >::norm(ccmc::Vector< float > &).
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Vector.h:44: Warning 509: Overloaded method ccmc::Vector< float >::norm() effectively ignored,
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Vector.h:42: Warning 509: as it is shadowed by ccmc::Vector< float >::norm(ccmc::Vector< float > &).
+[ 96%] Building CXX object src/ccmc/wrappers/python/CMakeFiles/_CCMC.dir/__/ccmcPYTHON_wrap.cxx.o
+Linking CXX shared module /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/lib/ccmc/java/libkameleon_plus-wrapper-java-6.0.0.so
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+[ 96%] Built target kameleon_plus-wrapper-java-6.0.0
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+Scanning dependencies of target kameleon_plus_jni
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[3]: Entering directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+[ 97%] Building Java objects for kameleon_plus_jni.jar
+[ 98%] Generating CMakeFiles/kameleon_plus_jni.dir/java_class_filelist
+[100%] Creating Java archive kameleon_plus-wrapper-java-6.0.0.jar
+In file included from /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/LFMInterpolator.h:17:0,
+                 from /home/weigel/git/Differences/kameleon/kameleon-plus/src/ccmc/wrappers/python/../ccmcPYTHON_wrap.cxx:3999:
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Polyhedron.h: In member function ‘void ccmc::Polyhedron<T>::setLoopsFaces(const std::vector<int>&, const std::vector<int>&) [with T = float]’:
+/home/weigel/git/Differences/kameleon/kameleon-plus/src/ccmc/wrappers/python/../ccmcPYTHON_wrap.cxx:29189:136:   instantiated from here
+/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/src/ccmc/Polyhedron.h:168:4: warning: converting to non-pointer type ‘int’ from NULL [-Wconversion-null]
+added manifest
+adding: home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/lib/ccmc/java/libkameleon_plus-wrapper-java-6.0.0.so(in = 4640992) (out= 1090335)(deflated 76%)
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+[100%] Built target kameleon_plus_jni
+Linking CXX shared module /home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/lib/ccmc/python/_CCMC.so
+make[3]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+[100%] Built target _CCMC
+make[2]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'
+make[1]: Leaving directory `/home/weigel/git/Differences/kameleon/kameleon-plus'

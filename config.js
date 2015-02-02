@@ -1,6 +1,7 @@
 //"CATALOGXML":"xml/catalog.xml",
+//        "baseDirectory":"http://sunspot.mesa.gmu.edu/Differences/output/",
 VIVIZ = {
-        "baseDirectory":"http://mag.gmu.edu/Differences/data/",
+        "baseDirectory":"http://mag.gmu.edu/sunspot/Differences/output/",
 	"defaultMode":"gallery",
 	"showThumbstrip":true,
 	"showFileName":true,
