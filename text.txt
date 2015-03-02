@@ -1,3 +1,5 @@
+https://www.researchgate.net/publication/262986314_FLIP-MHD-based_model_sensitivity_analysis
+
 Sensitivity of MHD models of Earth's magnetosphere to preconditioning
 
 Abstract

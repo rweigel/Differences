@@ -15,6 +15,7 @@ cuts:
 
 backup:
 	- rsync -avm --delete-before /mnt/Disk3/Differences/output/ /swd4/Users/weigel/Differences/output
+	- rsync -avm --delete-before /mnt/Disk3/Differences/data/ /swd4/Users/weigel/Differences/data
 
 # Create VTK file of full volume
 volumes:

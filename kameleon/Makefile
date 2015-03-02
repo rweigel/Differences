@@ -16,6 +16,12 @@ prep:
 
 #	cd deps/boost_1_57_0; ./bootstrap.sh && ./b2
 
+cuts:
+	./reader ../data/Robert_Weigel_020215_1 0
+#	./reader ../data/Brian_Curtis_042213_8 0
+#	./reader ../data/Brian_Curtis_042213_4 0
+#	./reader ../data/Brian_Curtis_042213_1 0
+
 kameleon:
 	- mkdir kameleon-plus;
 	cd kameleon-plus; cp ../CMakeLists.txt ../ccmc-software/kameleon-plus/trunk/kameleon-plus-working/CMakeLists.txt  
@@ -46,9 +52,6 @@ reader: reader.cpp
 	/home/weigel/git/Differences/kameleon/ccmc-software/kameleon-plus/trunk/kameleon-plus-working/lib/ccmc/libccmc.a \
 	-lcdf -lhdf5_cpp -lhdf5 -Wl,-rpath,/home/weigel/git/Differences/kameleon/deps/cdf35_0-dist/src/lib
 
-cuts:
-	./reader ../data/Brian_Curtis_042213_4 0
-#	./reader ../data/Brian_Curtis_042213_1 0
 
 clean: 
 	rm -f *.o
