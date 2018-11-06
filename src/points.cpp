@@ -37,7 +37,6 @@ int main (int argc, char * argv[]){
   std::string tmpstr;
 
   const char* dir1input = argv[1];
-  int mode = atoi(argv[2]);
 
   DIR *d1;
   struct dirent *dir1struct;
@@ -46,34 +45,10 @@ int main (int argc, char * argv[]){
 
   ccmc::Kameleon kameleon1;
 
-  float *x = NULL;
-  float *y = NULL;
-  float *z = NULL;
-  int *s = NULL;
-  int Npts;
-
-  if (mode == 0 || mode == 1) {
-    grid(&s,&x,&y,&z);
-    if (mode == 0) {
-      // Write txt file of y=0 plane
-      Npts = s[0]*s[2];
-    }
-    if (mode == 1) {
-      // Write vtk of full volume
-      Npts = s[0]*s[1]*s[2];
-    }
-    boost::numeric::ublas::matrix<float> xyz(3,Npts);
-  }  
-
-
-  if (mode == 2) {
-    bnu::matrix<double> xyz = points(argv[3]);
-    Npts = xyz.size1();
-    std::cout << "N = " << Npts << "\n";
-    //boost::numeric::ublas::matrix<float> value1(14,1);
-   }
-
-  boost::numeric::ublas::matrix<float> value1(14,Npts);
+  bnu::matrix<double> xyz = points(argv[2]);
+  int Npts = xyz.size1();
+  std::cout << "N = " << Npts << "\n";
+  boost::numeric::ublas::matrix<double> value1(14,Npts);
 
   std::cout << xyz(0,0) << "\n";
 
@@ -138,45 +113,23 @@ int main (int argc, char * argv[]){
 
     std::cout << filename1input << ": Interpolation started." << std::endl;
 
-    if (mode == 0 || mode == 1) {
+    for (int k = 0; k < Npts; k++)
+      {
 
-      int l = 0;
-      for (int k = 0; k < s[2]; k++){
-	for (int j = 0; j < s[1]; j++){
-
-	  if ((y[j] != 0.0) & (mode == 0)){
-	    continue;
-	  }
-
-	  for (int i = 0; i < s[0]; i++){
-	    // If outside of simulation grid, xyz won't match value(0,l), ..., value(2,l).
-
-	    xyz(0,l) = x[i];
-	    xyz(1,l) = y[j];
-	    xyz(2,l) = z[k];
-
-	    value1(0,l) = interpolator1->interpolate("x",   x[i], y[j], z[k]);
-	    value1(1,l) = interpolator1->interpolate("y",   x[i], y[j], z[k]);
-	    value1(2,l) = interpolator1->interpolate("z",   x[i], y[j], z[k]);
-	    value1(3,l) = interpolator1->interpolate("bx",  x[i], y[j], z[k]);
-	    value1(4,l) = interpolator1->interpolate("by",  x[i], y[j], z[k]);
-	    value1(5,l) = interpolator1->interpolate("bz",  x[i], y[j], z[k]);
-	    value1(6,l) = interpolator1->interpolate("jx",  x[i], y[j], z[k]);
-	    value1(7,l) = interpolator1->interpolate("jy",  x[i], y[j], z[k]);
-	    value1(8,l) = interpolator1->interpolate("jz",  x[i], y[j], z[k]);
-	    value1(9,l) = interpolator1->interpolate("ux",  x[i], y[j], z[k]);
-	    value1(10,l) = interpolator1->interpolate("uy", x[i], y[j], z[k]);
-	    value1(11,l) = interpolator1->interpolate("uz", x[i], y[j], z[k]);
-	    value1(12,l) = interpolator1->interpolate("p",  x[i], y[j], z[k]);
-	    value1(13,l) = interpolator1->interpolate("rho",x[i], y[j], z[k]);
-
-	    l++;
-
-	  }
-	}
-      }
-    }
-    if (mode == 2) {
+	value1(0,k) = interpolator1->interpolate("x",   xyz(0,k), xyz(1,k), xyz(2,k));
+	value1(1,k) = interpolator1->interpolate("y",   xyz(0,k), xyz(1,k), xyz(2,k));
+	value1(2,k) = interpolator1->interpolate("z",   xyz(0,k), xyz(1,k), xyz(2,k));
+	value1(3,k) = interpolator1->interpolate("bx",  xyz(0,k), xyz(1,k), xyz(2,k));
+	value1(4,k) = interpolator1->interpolate("by",  xyz(0,k), xyz(1,k), xyz(2,k));
+	value1(5,k) = interpolator1->interpolate("bz",  xyz(0,k), xyz(1,k), xyz(2,k));
+	value1(6,k) = interpolator1->interpolate("jx",  xyz(0,k), xyz(1,k), xyz(2,k));
+	value1(7,k) = interpolator1->interpolate("jy",  xyz(0,k), xyz(1,k), xyz(2,k));
+	value1(8,k) = interpolator1->interpolate("jz",  xyz(0,k), xyz(1,k), xyz(2,k));
+	value1(9,k) = interpolator1->interpolate("ux",  xyz(0,k), xyz(1,k), xyz(2,k));
+	value1(10,k) = interpolator1->interpolate("uy", xyz(0,k), xyz(1,k), xyz(2,k));
+	value1(11,k) = interpolator1->interpolate("uz", xyz(0,k), xyz(1,k), xyz(2,k));
+	value1(12,k) = interpolator1->interpolate("p",  xyz(0,k), xyz(1,k), xyz(2,k));
+	value1(13,k) = interpolator1->interpolate("rho",xyz(0,k), xyz(1,k), xyz(2,k));
 
     }
     std::cout << filename1input << ": Interpolation finished." << std::endl;
@@ -184,49 +137,25 @@ int main (int argc, char * argv[]){
 
     kameleon1.close();
 
-    if (mode == 0) {
-      ///////////////////////////////////////////////////////////////
-      filename1output = dir1input;
-      boost::replace_all(filename1output, "data/", "output/");
-      filename1output.append("/data/cuts");
-      tmpstr = "mkdir -p ";
-      tmpstr.append(filename1output);
-      system(tmpstr.c_str());
-      filename1output.append("/Step_");
-      if (loopnum < 10) {
-	filename1output.append("0");
-      }
-      filename1output.append(boost::lexical_cast<std::string>(loopnum));
-      filename1output.append("_Y_eq_0.txt");
-
-      std::cout << filename1output << ": Writing started." << std::endl;  
-      writetxt(filename1output,value1,xyz,s);
-      std::cout << filename1output << ": Writing finished." << std::endl;  
-      ///////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////
+    filename1output = dir1input;
+    boost::replace_all(filename1output, "data/", "output/");
+    filename1output.append("/points");
+    tmpstr = "mkdir -p ";
+    tmpstr.append(filename1output);
+    system(tmpstr.c_str());
+    filename1output.append("/points_");
+    if (loopnum < 10) {
+      filename1output.append("0");
     }
-
-    if (mode == 1) {
-      ///////////////////////////////////////////////////////////////
-      filename1output = dir1input;
-      boost::replace_all(filename1output, "data/", "output/");
-      filename1output.append("/data/volumes");
-      tmpstr = "mkdir -p ";
-      tmpstr.append(filename1output);
-      system(tmpstr.c_str());
-      filename1output.append("/Step_");
-      if (loopnum < 10) {
-	filename1output.append("0");
-      }
-      filename1output.append(boost::lexical_cast<std::string>(loopnum));
-      filename1output.append(".vtk");
-
-      std::cout << filename1output << ": Writing started." << std::endl;  
-      writevtk(filename1output,x,y,z,value1,s);
-      std::cout << filename1output << ": Writing finished." << std::endl;  
-
-      ///////////////////////////////////////////////////////////////
-    }
-
+    filename1output.append(boost::lexical_cast<std::string>(loopnum));
+    filename1output.append(".txt");
+    
+    std::cout << filename1output << ": Writing started." << std::endl;  
+    writepoints(filename1output,value1,xyz);
+    std::cout << filename1output << ": Writing finished." << std::endl;  
+    ///////////////////////////////////////////////////////////////
+    
     value1.clear();
 
   }

@@ -1,6 +1,60 @@
+namespace bnu = boost::numeric::ublas;
+
+bnu::matrix<float> points(char *filename) {
+
+  // Count lines in file
+  int N = 0;
+  std::ifstream file0(filename); 
+  if ( !file0.good() ) {
+    std::cout << "Could not open " << filename << "\n";
+    std::exit(1);
+  }
+
+  std::string line;
+  while (getline(file0, line))
+    {
+      if (!line.empty())
+        N++;
+    }
+  std::cout << "file = " << filename << "; N = " << N << "\n";
+  file0.close();
+
+  // Read lines into matrix
+  bnu::matrix<float> xyz(N, 3);
+
+  std::ifstream file(filename);
+  for(int row = 0; row < N; row++)
+    {
+      std::string line;
+      std::getline(file, line);
+
+      std::stringstream iss(line);
+
+      for (int col = 0; col < 3; col++)
+        {
+	  std::string val;
+	  if (col == 2) {
+	    std::getline(iss, val, '\n');
+	  } else {
+	    std::getline(iss, val,',');
+	  }
+
+	  std::stringstream convertor(val);
+	  convertor >> xyz(row, col);
+        }
+      std::cout << "line = " << row;
+      std::cout << "; x = " << xyz(row, 0); 
+      std::cout << "; y = " << xyz(row, 1);
+      std::cout << "; z = " << xyz(row, 2) << "\n";
+    }
+  file.close();
+
+  return xyz;
+}
+
 void grid(int **s,float **xcord, float **ycord, float **zcord) {
 
-  // CREATING PERSONALIZED MAGNETOSPHERIC GRID
+  // MAGNETOSPHERIC GRID
   int xmin = -222;
   int ymin = -47;
   int zmin = ymin;

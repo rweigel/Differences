@@ -1,14 +1,42 @@
-The following codes create a cartesian grid structure, extracts Bz, Jx, rho, Ux from run data files, performs an interpolation onto the grid using Kameleon, calculate the percent difference, and output a .vtk file for each time step.
+## Overview
 
-Data files are assumed to be in ../disk, but this directory may be set as an argument to executables.
+The following codes create a cartesian grid structure, extract parameters from simulation data files, performs an interpolation onto the grid using Kameleon, calculates the percent difference, and outputs a .vtk file for each time step.
 
-All files are assumed to have extension .cdf (not .cdf.gz).
+## Compiling
 
-reader.cpp
-    - Reads from ../disk subdirectories and creates .vtk output files in subdirectories of ../disk
+The most difficult step is compilation. The Kameleon libraries require CDF, HDF5, and Boost. Copies of the source code of the libraries that all worked on a system with ... are used. The individual libraries can be build using
+
+```
+make cdf
+make hdf
+make boost
+make kameleon
+```
+
+and then
+
+```
+make reader
+```
+
+## Running
+
+Request CDF data files in CCMC interface. When they are ready, execute from this directory
+
+```
+make ID
+```
+
+where `ID` is the run id in the URL of the data files sent by CCMC when the files are ready. For exmaple, if the CCMC data files are stored at `https://ccmc.gsfc.nasa.gov/RoR_WWW/output_files/Brian_Curtis_042213_2`, then execute
+
+```
+make Brian_Curtis_042213_2
+```
+
+## Code Description
+
+`reader.cpp` - Reads MHD files in `../data/ID` and outputs `VTK` or `ASCII` output files in subdirectories of ../disk. The VTK files are on the grid specified in `grid.h`. The ASCII files are on the same grid, but in the `y=0` plane.
     
-diff.cpp
-    - Reads from ../disk subdirectories and calculates percent differences for all variables, then places the result files in ../disk/Results.
+`diff.cpp` -  Reads from ../disk subdirectories and calculates percent differences for all variables, then places the result files in ../disk/Results.
     
-pcdiff.cpp
-    - Reads from ../disk/Precondition (specific to the preconditioning case used in Brian Curtis' thesis) and calculates percent differences for all variables, then places the result files in ../disk/Precondition/Results
+`pcdiff.cpp` - Reads from ../disk/Precondition (specific to the preconditioning case used in Brian Curtis' thesis) and calculates percent differences for all variables, then places the result files in ../disk/Precondition/Results

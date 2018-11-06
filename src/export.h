@@ -1,3 +1,26 @@
+void writepoints(std::string resultfilename, boost::numeric::ublas::matrix<float> value, boost::numeric::ublas::matrix<float> xyz) {
+
+  int i;
+  int vn;
+
+  FILE *myfile_cut;
+  
+  std::string cutfile;
+  cutfile = resultfilename;
+
+  myfile_cut = fopen(cutfile.c_str(),"w");
+
+  for (i=0; i<xyz.size1(); i++){
+    fprintf(myfile_cut,"%f %f %f ",xyz(0,i),xyz(1,i),xyz(2,i));
+    for (vn = 0; vn < 14; vn++) {
+      fprintf(myfile_cut,"%e ",value(vn,i));
+    }
+    fprintf(myfile_cut,"\n");
+  }
+  fclose(myfile_cut);
+
+}
+
 void writetxt(std::string resultfilename, boost::numeric::ublas::matrix<float> value, boost::numeric::ublas::matrix<float> xyz, int *s) {
 
   int npoinx = s[0];
@@ -25,21 +48,22 @@ void writetxt(std::string resultfilename, boost::numeric::ublas::matrix<float> v
 
 }
 
-  float FloatSwap( float f )
+float FloatSwap( float f )
+{
+  // Swaw floats for VTK output.
+  union
   {
-    union
-    {
-      float f;
-      unsigned char b[4];
-    } dat1, dat2;
+    float f;
+    unsigned char b[4];
+  } dat1, dat2;
 
-    dat1.f = f;
-    dat2.b[0] = dat1.b[3];
-    dat2.b[1] = dat1.b[2];
-    dat2.b[2] = dat1.b[1];
-    dat2.b[3] = dat1.b[0];
-    return dat2.f;
-  }
+  dat1.f = f;
+  dat2.b[0] = dat1.b[3];
+  dat2.b[1] = dat1.b[2];
+  dat2.b[2] = dat1.b[1];
+  dat2.b[3] = dat1.b[0];
+  return dat2.f;
+}
 
 void writevtk(std::string resultfilename, float *xcord, float *ycord, float *zcord, boost::numeric::ublas::matrix<float> value, int *s) {
 

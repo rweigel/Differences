@@ -62,20 +62,15 @@ int main (int argc, char * argv[]){
       // Write vtk of full volume
       Npts = s[0]*s[1]*s[2];
     }
-    boost::numeric::ublas::matrix<float> xyz(3,Npts);
   }  
-
-
   if (mode == 2) {
-    bnu::matrix<double> xyz = points(argv[3]);
-    Npts = xyz.size1();
-    std::cout << "N = " << Npts << "\n";
-    //boost::numeric::ublas::matrix<float> value1(14,1);
-   }
+  }
 
-  boost::numeric::ublas::matrix<float> value1(14,Npts);
-
-  std::cout << xyz(0,0) << "\n";
+  Npts = atoi(argv[4]);
+  std::cout << "Number of lines to read in " << argv[3] << " = " << Npts << "\n";
+  bnu::matrix<double> xyz2 = points(argv[3], Npts);
+  std::cout << xyz2(0,0) << "\n";
+  return 0;
 
   ///////////////////////////////////////////////////////////////    
   //std::cout << "Directory" << ": " << dir1input << std::endl;
@@ -138,6 +133,8 @@ int main (int argc, char * argv[]){
 
     std::cout << filename1input << ": Interpolation started." << std::endl;
 
+    boost::numeric::ublas::matrix<float> value1(14,Npts);
+    boost::numeric::ublas::matrix<float> xyz(3,Npts);
     if (mode == 0 || mode == 1) {
 
       int l = 0;
