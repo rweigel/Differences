@@ -9,6 +9,7 @@
 #include <ctime>
 #include <cmath>
 #include <cstdlib>
+#include <cstdio>
 
 #include <fstream>
 #include <sstream>
@@ -26,6 +27,7 @@
 
 #include "grid.h"
 #include "export.h"
+
 
 namespace bnu = boost::numeric::ublas;
 
@@ -48,7 +50,7 @@ int main (int argc, char * argv[]){
   bnu::matrix<double> xyz = points(argv[2]);
   int Npts = xyz.size1();
   std::cout << "N = " << Npts << "\n";
-  boost::numeric::ublas::matrix<double> value1(14,Npts);
+  boost::numeric::ublas::matrix<double> value1(Npts,14);
 
   std::cout << xyz(0,0) << "\n";
 
@@ -81,7 +83,8 @@ int main (int argc, char * argv[]){
 
   ///////////////////////////////////////////////////////////////    
   // loop over timesteps
-  for(int loopnum = 0; loopnum<run1ls.size(); loopnum++ ){
+  //for(int loopnum = 0; loopnum<run1ls.size(); loopnum++ ){
+  for(int loopnum = 0; loopnum < 10; loopnum++ ){
 
     filename1input = dir1string;
     filename1input.append("/");
@@ -112,25 +115,24 @@ int main (int argc, char * argv[]){
     ccmc::Interpolator * interpolator1 = kameleon1.createNewInterpolator();
 
     std::cout << filename1input << ": Interpolation started." << std::endl;
-
+    
     for (int k = 0; k < Npts; k++)
       {
-
-	value1(0,k) = interpolator1->interpolate("x",   xyz(0,k), xyz(1,k), xyz(2,k));
-	value1(1,k) = interpolator1->interpolate("y",   xyz(0,k), xyz(1,k), xyz(2,k));
-	value1(2,k) = interpolator1->interpolate("z",   xyz(0,k), xyz(1,k), xyz(2,k));
-	value1(3,k) = interpolator1->interpolate("bx",  xyz(0,k), xyz(1,k), xyz(2,k));
-	value1(4,k) = interpolator1->interpolate("by",  xyz(0,k), xyz(1,k), xyz(2,k));
-	value1(5,k) = interpolator1->interpolate("bz",  xyz(0,k), xyz(1,k), xyz(2,k));
-	value1(6,k) = interpolator1->interpolate("jx",  xyz(0,k), xyz(1,k), xyz(2,k));
-	value1(7,k) = interpolator1->interpolate("jy",  xyz(0,k), xyz(1,k), xyz(2,k));
-	value1(8,k) = interpolator1->interpolate("jz",  xyz(0,k), xyz(1,k), xyz(2,k));
-	value1(9,k) = interpolator1->interpolate("ux",  xyz(0,k), xyz(1,k), xyz(2,k));
-	value1(10,k) = interpolator1->interpolate("uy", xyz(0,k), xyz(1,k), xyz(2,k));
-	value1(11,k) = interpolator1->interpolate("uz", xyz(0,k), xyz(1,k), xyz(2,k));
-	value1(12,k) = interpolator1->interpolate("p",  xyz(0,k), xyz(1,k), xyz(2,k));
-	value1(13,k) = interpolator1->interpolate("rho",xyz(0,k), xyz(1,k), xyz(2,k));
-
+	//std::cout << k << "," << xyz(k,0) << "," << xyz(k,1) << "," << xyz(k,2) << "\n";    
+	value1(k,0) = interpolator1->interpolate("x",   xyz(k,0), xyz(k,1), xyz(k,2));
+	value1(k,1) = interpolator1->interpolate("y",   xyz(k,0), xyz(k,1), xyz(k,2));
+	value1(k,2) = interpolator1->interpolate("z",   xyz(k,0), xyz(k,1), xyz(k,2));
+	value1(k,3) = interpolator1->interpolate("bx",  xyz(k,0), xyz(k,1), xyz(k,2));
+	value1(k,4) = interpolator1->interpolate("by",  xyz(k,0), xyz(k,1), xyz(k,2));
+	value1(k,5) = interpolator1->interpolate("bz",  xyz(k,0), xyz(k,1), xyz(k,2));
+	value1(k,6) = interpolator1->interpolate("jx",  xyz(k,0), xyz(k,1), xyz(k,2));
+	value1(k,7) = interpolator1->interpolate("jy",  xyz(k,0), xyz(k,1), xyz(k,2));
+	value1(k,8) = interpolator1->interpolate("jz",  xyz(k,0), xyz(k,1), xyz(k,2));
+	value1(k,9) = interpolator1->interpolate("ux",  xyz(k,0), xyz(k,1), xyz(k,2));
+	value1(k,10) = interpolator1->interpolate("uy", xyz(k,0), xyz(k,1), xyz(k,2));
+	value1(k,11) = interpolator1->interpolate("uz", xyz(k,0), xyz(k,1), xyz(k,2));
+	value1(k,12) = interpolator1->interpolate("p",  xyz(k,0), xyz(k,1), xyz(k,2));
+	value1(k,13) = interpolator1->interpolate("rho",xyz(k,0), xyz(k,1), xyz(k,2));
     }
     std::cout << filename1input << ": Interpolation finished." << std::endl;
     ///////////////////////////////////////////////////////////////    

@@ -1,4 +1,4 @@
-ID=Sean_Blake_081318_1
+#ID=Sean_Blake_081318_1
 ID=Brian_Curtis_042213_2
 
 CDF_TGZ=$(CURDIR)/../tgz/cdf34_1-dist-all.tar.gz
@@ -29,38 +29,32 @@ all:
 	make pointsreader
 	make pointsout
 
-test:
-	make testdata
-#	make pointsin
-	make pointsreader
-	make pointsout
+../data/$(ID):
+	@echo "Data directory for ID=$(ID) does not exist in ../data/$(ID). Downloading."
+	cd ../data; \
+	wget -np -m -nH --cut-dirs=2 https://ccmc.gsfc.nasa.gov/RoR_WWW/output_files/$(ID) | \
+	wget -np -m -nH -R "index.html*" --cut-dirs=4 \
+		http://mag.gmu.edu/git-data/bcurtiswx/Differences/data/$(ID)/
 
-testdata: ../data/test/Brian_Curtis_042213_2
-	make ../data/test/Brian_Curtis_042213_2
+data: | ../data/$(ID)
+	@echo "Data directory ../data/$(ID) is ready for processing."
 
- ../data/test/Brian_Curtis_042213_2:
-	mkdir -p ../data/test
-	cd ../data/test; wget -np -m -nH -R "index.html*" --cut-dirs=4 http://mag.gmu.edu/git-data/bcurtiswx/Differences/data/Brian_Curtis_042213_2/
+pointsreader: 
+	make ../bin/points
 
-pointsreader: points.cpp grid.h export.h $(BOOST_DIR) $(KAMELEON) $(CDF)
+../bin/points: points.cpp grid.h export.h $(BOOST_DIR) $(KAMELEON) $(CDF)
 	make gunzip
 	- mkdir ../bin
 	g++ points.cpp -o ../bin/points -I${BOOST_DIR} -I${KAMELEON_DIR}/src/ ${KAMELEON} ${CDF}
 
-pointsin: points.py
-	python points.py > ../points/points.csv
+pointsin: points_writer.py
+	python points_writer.py > ../points/points.csv
 
 pointsout: ../points/points.csv
 	mkdir -p ../output/$(ID)/points
 	cp ../points/points.csv ../output/$(ID)/points
 	../bin/points ../data/$(ID) ../output/$(ID)/points/points.csv
 
-../data/$(ID):
-	@echo "Data directory for ID=$(ID) does not exist in ../data/$(ID). Downloading."
-	cd ../data; wget -np -m -nH --cut-dirs=2 https://ccmc.gsfc.nasa.gov/RoR_WWW/output_files/$(ID)
-
-data: | ../data/$(ID)
-	@echo "Data directory ../data/$(ID) is ready for processing."
 
 all2:
 	make reader

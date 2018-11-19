@@ -1,23 +1,22 @@
-void writepoints(std::string resultfilename, boost::numeric::ublas::matrix<float> value, boost::numeric::ublas::matrix<float> xyz) {
+void writepoints(std::string outfname, boost::numeric::ublas::matrix<float> value, boost::numeric::ublas::matrix<float> xyz) {
 
-  int i;
+  int i,j;
   int vn;
 
-  FILE *myfile_cut;
+  FILE *outfptr;
   
-  std::string cutfile;
-  cutfile = resultfilename;
+  outfptr = fopen(outfname.c_str(),"w");
 
-  myfile_cut = fopen(cutfile.c_str(),"w");
-
-  for (i=0; i<xyz.size1(); i++){
-    fprintf(myfile_cut,"%f %f %f ",xyz(0,i),xyz(1,i),xyz(2,i));
-    for (vn = 0; vn < 14; vn++) {
-      fprintf(myfile_cut,"%e ",value(vn,i));
+  for (i = 0; i < xyz.size1(); i++){
+    for (j = 0; j < xyz.size2(); j++) {
+      fprintf(outfptr,"%.16f,",xyz(i,j));
     }
-    fprintf(myfile_cut,"\n");
+    for (vn = 0; vn < value.size2()-1; vn++) {
+      fprintf(outfptr,"%e,",value(i,vn));
+    }
+    fprintf(outfptr,"%e\n",value(i,vn));
   }
-  fclose(myfile_cut);
+  fclose(outfptr);
 
 }
 

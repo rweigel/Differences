@@ -16,11 +16,11 @@ bnu::matrix<float> points(char *filename) {
       if (!line.empty())
         N++;
     }
-  std::cout << "file = " << filename << "; N = " << N << "\n";
+  std::cout << "points(): file = " << filename << "; N = " << N << "\n";
   file0.close();
 
   // Read lines into matrix
-  bnu::matrix<float> xyz(N, 3);
+  bnu::matrix<float> xyz(N, 6);
 
   std::ifstream file(filename);
   for(int row = 0; row < N; row++)
@@ -30,10 +30,10 @@ bnu::matrix<float> points(char *filename) {
 
       std::stringstream iss(line);
 
-      for (int col = 0; col < 3; col++)
+      for (int col = 0; col < 6; col++)
         {
 	  std::string val;
-	  if (col == 2) {
+	  if (col == 5) {
 	    std::getline(iss, val, '\n');
 	  } else {
 	    std::getline(iss, val,',');
@@ -42,10 +42,10 @@ bnu::matrix<float> points(char *filename) {
 	  std::stringstream convertor(val);
 	  convertor >> xyz(row, col);
         }
-      std::cout << "line = " << row;
-      std::cout << "; x = " << xyz(row, 0); 
-      std::cout << "; y = " << xyz(row, 1);
-      std::cout << "; z = " << xyz(row, 2) << "\n";
+      //std::cout << "line = " << row;
+      //std::cout << "; x = " << xyz(row, 0); 
+      //std::cout << "; y = " << xyz(row, 1);
+      //std::cout << "; z = " << xyz(row, 2) << "\n";
     }
   file.close();
 
