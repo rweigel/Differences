@@ -1,5 +1,7 @@
-#ID=Sean_Blake_081318_1
-ID=Brian_Curtis_042213_2
+ID=Sean_Blake_081318_1
+#ID=Brian_Curtis_042213_2
+
+GRIDNAME=3RE-Ntheta_90-Nphi_90
 
 CDF_TGZ=$(CURDIR)/../tgz/cdf34_1-dist-all.tar.gz
 CDF_DIR=$(CURDIR)/../deps/cdf34_1-dist
@@ -20,14 +22,15 @@ HDF5=$(CURDIR)/../deps/hdf5-1.8.10-patch1/src/.libs/libhdf5.a
 
 SHELL := /bin/bash
 
-# Not used (counts non-empty lines in file)
-N=$(shell grep -e "^[0-9]" ../points/points.csv | wc | sed -e 's/\s\+/ /g' | sed -e 's/^ //' | cut -d ' ' -f 1)
-
 all:
-	make data
-	make pointsin
-	make pointsreader
-	make pointsout
+	make data      # Download data from CCMC
+	make pointsin  # Create input points
+	make points    # Compile calculation code
+	make pointsout # Execute calculation code
+
+data: 
+	make ../data/$(ID)
+	@echo "Data directory ../data/$(ID) is ready for processing."
 
 ../data/$(ID):
 	@echo "Data directory for ID=$(ID) does not exist in ../data/$(ID). Downloading."
@@ -36,25 +39,42 @@ all:
 	wget -np -m -nH -R "index.html*" --cut-dirs=4 \
 		http://mag.gmu.edu/git-data/bcurtiswx/Differences/data/$(ID)/
 
-data: | ../data/$(ID)
-	@echo "Data directory ../data/$(ID) is ready for processing."
+pointsin: points_writer.py
+	make ../points/$(GRIDNAME)/points.csv 
 
-pointsreader: 
+../points/$(GRIDNAME)/points.csv: 
+	- mkdir -p ../points/$(GRIDNAME)
+	python points_writer.py --grid $(GRIDNAME) > ../points/$(GRIDNAME)/points.csv
+
+points: points.cpp grid.h export.h $(BOOST_DIR) $(KAMELEON) $(CDF)
 	make ../bin/points
 
-../bin/points: points.cpp grid.h export.h $(BOOST_DIR) $(KAMELEON) $(CDF)
-	make gunzip
+../bin/points:
+	- make gunzip
 	- mkdir ../bin
 	g++ points.cpp -o ../bin/points -I${BOOST_DIR} -I${KAMELEON_DIR}/src/ ${KAMELEON} ${CDF}
 
-pointsin: points_writer.py
-	python points_writer.py > ../points/points.csv
+pointsout:
+	make ../output/$(ID)/points/$(GRIDNAME)/points_00.csv
 
-pointsout: ../points/points.csv
-	mkdir -p ../output/$(ID)/points
-	cp ../points/points.csv ../output/$(ID)/points
-	../bin/points ../data/$(ID) ../output/$(ID)/points/points.csv
+../output/$(ID)/points/$(GRIDNAME)/points_00.csv: ../points/$(GRIDNAME)/points.csv
+	mkdir -p ../output/$(ID)/points/$(GRIDNAME)
+	cp ../points/$(GRIDNAME)/points.csv ../output/$(ID)/points/$(GRIDNAME)
+	../bin/points ../data/$(ID) ../output/$(ID)/points/$(GRIDNAME)/points.csv
 
+gunzip:
+	- find ../data/$(ID)/GM_CDF -name "*.cdf.gz" | xargs -i -P 12 gunzip {}
+
+gzip:
+	find ../data/$(ID)/GM_CDF -name "*.cdf" | xargs -i -P 12 gzip --fast {}
+
+
+
+
+### old
+
+# Not used (counts non-empty lines in file)
+N=$(shell grep -e "^[0-9]" ../points/points.csv | wc | sed -e 's/\s\+/ /g' | sed -e 's/^ //' | cut -d ' ' -f 1)
 
 all2:
 	make reader
@@ -74,11 +94,6 @@ vtk:
 	make gunzip
 	cd ..;bin/reader data/$(ID) 1
 
-gunzip:
-	- find ../data/$(ID)/GM_CDF -name "*.cdf.gz" | xargs -i -P 12 gunzip {}
-
-gzip:
-	find ../data/$(ID)/GM_CDF -name "*.cdf" | xargs -i -P 12 gzip --fast {}
 
 hdf:
 	make ${HDF5}

@@ -47,7 +47,7 @@ int main (int argc, char * argv[]){
 
   ccmc::Kameleon kameleon1;
 
-  bnu::matrix<double> xyz = points(argv[2]);
+  bnu::matrix<double> xyz = readpoints(argv[2]);
   int Npts = xyz.size1();
   std::cout << "N = " << Npts << "\n";
   boost::numeric::ublas::matrix<double> value1(Npts,14);

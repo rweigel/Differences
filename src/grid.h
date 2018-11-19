@@ -1,6 +1,6 @@
 namespace bnu = boost::numeric::ublas;
 
-bnu::matrix<float> points(char *filename) {
+bnu::matrix<float> readpoints(char *filename) {
 
   // Count lines in file
   int N = 0;

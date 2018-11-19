@@ -20,21 +20,23 @@ z = np.zeros((Ntheta*Nphi,))
 
 i = 0
 
-# Don't write redundant theta = 0 values if keepRedundant = False
-# Less postprocessing manipulation needed if small number of redundant points kept.
-keepRedundant = False
+# Don't write redundant theta = 0 values if noRedundant = False
+# More computation required if redundant points kept, but less
+# postprocessing manipulation needed.
+noRedundant = False
 theta0 = False
 
 for t in range(0,len(theta)):
     for p in range(0,len(phi)):
         
-        if keepRedundant and theta0 and theta[t] == 0: continue # Already printed theta = 0 value
+        # Already printed theta = 0 value
+        if noRedundant and theta0 and theta[t] == 0: continue
 
         x[i] = r*np.sin(theta[t])*np.cos(phi[p])
         y[i] = r*np.sin(theta[t])*np.sin(phi[p])
         z[i] = r*np.cos(theta[t])
         print('%f,%f,%f,%f,%f,%f' % (x[i],y[i],z[i],r,thetad[t],phid[p]))
-        #print('%f,%f,%f' % (x[i],y[i],z[i]))
         i = i+1
 
-        if keepRedundant and theta[t] == 0: theta0 = True # Printed a theta = 0 value
+        # Already printed theta = 0 value
+        if noRedundant and theta[t] == 0: theta0 = True
